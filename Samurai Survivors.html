@@ -496,7 +496,9 @@
 
 				box-shadow: 0 0 15px rgba(77, 107, 255, 0.4);
 			}
-			html,
+			
+				@media (max-width: 700px) {
+				html,
 				body {
 					width: 100%;
 					max-width: 100%;
@@ -700,6 +702,9 @@
 					right: 0;
 					width: min(230px, calc(100vw - 30px));
 				}
+				}
+				/* ========================= SMALL iPHONE ========================= */
+				@media (max-width: 380px) {
 				.logo {
 					font-size: 20px;
 				}
@@ -731,7 +736,7 @@
 				.next {
 					font-size: 30px;
 				}
-
+				}
 
 				</style>
 			</meta>

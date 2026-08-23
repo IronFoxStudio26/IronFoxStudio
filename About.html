@@ -405,7 +405,9 @@
 				display:block;
 
 			}
-			html,
+			
+				@media (max-width: 700px) {
+				html,
 				body {
 					width: 100%;
 					max-width: 100%;
@@ -522,6 +524,9 @@
 					right: 0;
 					width: min(230px, calc(100vw - 30px));
 				}
+				}
+				/* ========================= SMALL iPHONE ========================= */
+				@media (max-width: 380px) {
 				nav {
 					padding: 10px 12px;
 				}
@@ -553,7 +558,7 @@
 				.about-image {
 					border-radius: 10px;
 				}
-
+				}
 				</style>
 			</meta>
 		</meta>

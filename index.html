@@ -430,17 +430,13 @@
 				display:block;
 
 			}
-			
+				
+				@media (max-width: 700px) {
 				body {
 					overflow-x: hidden;
 				}
 
 				/* HEADER */
-				header {
-					position: sticky;
-					top: 0;
-				}
-
 				nav {
 					width: 100%;
 					padding: 12px 15px;
@@ -448,19 +444,15 @@
 					gap: 12px;
 				}
 
-				/* LOGO */
 				.logo {
 					font-size: 22px;
 					text-align: center;
 				}
 
-				/* MENU */
 				.menu {
 					width: 100%;
 					margin-left: 0;
-					display: flex;
 					justify-content: center;
-					align-items: center;
 					flex-wrap: wrap;
 					gap: 12px 18px;
 				}
@@ -490,110 +482,54 @@
 					width: min(230px, calc(100vw - 30px));
 				}
 
-				/* HERO */
-				.hero {
+				/* GAMES SECTION */
+				.games {
 					width: 100%;
-					padding: 50px 15px;
+					padding: 35px 15px;
 				}
 
-				.hero h1 {
-					font-size: 34px;
-					line-height: 1.15;
-				}
-
-				.hero p {
-					font-size: 17px;
-					line-height: 1.5;
-				}
-
-				/* SECTIONS */
-				section {
-					width: 100%;
-					padding: 45px 15px;
-				}
-
-				h2 {
-					font-size: 28px;
-				}
-
-				/* PROJECT CARD */
-				.project-card {
+				.games-container {
 					width: 100%;
 					max-width: 100%;
-					border-radius: 12px;
+					padding: 20px 15px;
+					border-radius: 15px;
 				}
 
-				.project-card img {
-					width: 100%;
-					height: auto;
-					max-height: 300px;
-					object-fit: cover;
+				.games-container h2 {
+					font-size: 28px;
+					margin-bottom: 25px;
 				}
 
-				.project-card h3 {
-					font-size: 22px;
-					margin: 15px;
-				}
-
-				.project-card p {
-					font-size: 16px;
-					line-height: 1.5;
-					margin: 15px;
-				}
-
-				.project-btn {
-					display: block;
-					width: calc(100% - 30px);
-					margin: 15px;
-					text-align: center;
-				}
-
-				/* SERVICES */
-				.services {
-					width: 100%;
-					padding: 50px 15px;
-				}
-
-				.services h2 {
-					font-size: 32px;
-					margin-bottom: 30px;
-				}
-
-				.service-container {
+				/* GAMES GRID */
+				.games-grid {
 					width: 100%;
 					display: flex;
 					flex-direction: column;
 					align-items: center;
 					gap: 20px;
-					flex-wrap: nowrap;
 				}
 
-				.service-card {
+				/* GAME CARD */
+				.game-card {
 					width: 100%;
-					max-width: 350px;
-					padding: 30px 20px;
+					max-width: 320px;
 				}
 
-				.icon {
-					font-size: 45px;
+				.game-card img {
+					width: 100%;
+					height: auto;
+					aspect-ratio: 3 / 4;
+					object-fit: cover;
 				}
 
-				.service-card h3 {
-					font-size: 21px;
+				.game-card h3 {
+					font-size: 20px;
+					margin: 14px 0 6px;
 				}
 
-				.service-card p {
+				.game-card p {
 					font-size: 15px;
-				}
-
-				/* CARDS */
-				.cards {
-					grid-template-columns: 1fr;
-					width: 100%;
-				}
-
-				.card {
-					width: 100%;
+					padding-bottom: 18px;
 				}
 
 				/* FOOTER */
@@ -601,6 +537,9 @@
 					padding: 25px 15px;
 					font-size: 14px;
 				}
+				}
+				
+				@media (max-width: 380px) {
 				.logo {
 					font-size: 20px;
 				}
@@ -613,28 +552,29 @@
 					font-size: 14px;
 				}
 
-				.hero h1 {
-					font-size: 30px;
+				.games {
+					padding: 25px 10px;
 				}
 
-				.hero p {
-					font-size: 16px;
+				.games-container {
+					padding: 15px 10px;
 				}
 
-				.service-card {
-					padding: 25px 15px;
+				.games-container h2 {
+					font-size: 25px;
 				}
 
-				.services h2 {
-					font-size: 28px;
+				.game-card {
+					max-width: 290px;
 				}
 
-
-				
-
+				.game-card h3 {
+					font-size: 18px;
+				}
+				}
 					
 					</style>
-				</meta>
+					</meta>
 			</meta>
 			</head>
 	
