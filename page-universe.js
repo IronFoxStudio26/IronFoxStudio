@@ -7,10 +7,20 @@
     'about.html': {id:'about',kicker:'03 / THE FORGE',title:'BUILT BY <span>IMAGINATION.</span>',desc:'Get to know the ideas, craft and ambition behind Iron Fox Studio.'},
     'contacts.html': {id:'contacts',kicker:'04 / OPEN CHANNEL',title:'LET’S CONNECT<span>.</span>',desc:'Have a project in mind, want to collaborate, or simply want to say hello? Open a channel.'},
     'samurai survivors.html': {id:'samurai',kicker:'GAME FILE / 001',title:'SAMURAI <span>SURVIVORS.</span>',desc:'Enter the battlefield and discover the game.'},
+    'shadow knight.html': {id:'shadow-game',kicker:'GAME FILE / 002',title:'SHADOW <span>KNIGHT.</span>',desc:'Enter the shadows. Face relentless enemies and survive the fight.'},
+    'cowboy adventure.html': {id:'cowboy-game',kicker:'GAME FILE / 003',title:'COWBOY <span>ADVENTURE.</span>',desc:'Ride into a stylized Wild West adventure filled with action and challenges.'},
     'settings.html': {id:'settings',kicker:'SYSTEM / CONFIGURATION',title:'YOUR <span>CONTROL ROOM.</span>',desc:'Manage your Iron Fox Studio account and preferences.'},
     'profile.html': {id:'profile',kicker:'SYSTEM / PLAYER ID',title:'YOUR <span>PROFILE.</span>',desc:'Your identity in the Iron Fox universe.'}
   };
   const page = pages[file];
+  // Decorative 3D scene markers: lightweight CSS geometry, no external model downloads.
+  if (!document.querySelector('.if-3d-ambient')) {
+    const ambient = document.createElement('div');
+    ambient.className = 'if-3d-ambient';
+    ambient.setAttribute('aria-hidden', 'true');
+    ambient.innerHTML = '<span class="if-3d-ring"></span><span class="if-3d-shard"></span><span class="if-3d-shard if-3d-shard-two"></span>';
+    document.body.prepend(ambient);
+  }
   document.body.classList.add('if-universe-page', `if-page-${page ? page.id : 'home'}`);
   if (page) {
     document.body.dataset.ifPage = page.id;
