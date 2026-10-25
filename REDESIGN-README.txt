@@ -1,18 +1,21 @@
-IRON FOX STUDIO — REDESIGN PREVIEW
+IRON FOX STUDIO — UNIVERSE REDESIGN PREVIEW
 
-Files:
-- index.html: redesigned homepage; existing project and section pages are retained.
-- redesign.css: responsive charcoal/orange visual system.
-- redesign.js: Three.js interactive procedural fox-like 3D emblem, orbit rings, particles and pointer parallax.
-- All original assets and HTML pages remain in this folder.
+What's changed:
+- Added universe.css: shared black/obsidian + plasma-orange design system, glassy navigation, metallic cards, responsive layouts, focus states and reduced-motion support.
+- Added universe.js: atmospheric 3D-inspired orbit motif, subtle pointer parallax, active-page navigation and consistent navigation for the projects page.
+- Applied the shared design layer to the existing HTML pages.
+- Kept the existing Three.js homepage scene in redesign.js.
+- Fixed the Samurai Survivors home link and added project anchor targets for Shadow Knight and Cowboy Adventure.
+- Improved the Games page card links where possible.
 
 Run locally:
-1. Open a terminal in this folder.
-2. Run: python -m http.server 8000
-3. Visit http://localhost:8000
+1. Extract this folder.
+2. Open a terminal inside "Iron Fox Studio".
+3. Run: python -m http.server 8000
+4. Open http://localhost:8000
 
-Note:
-- Three.js and Google Fonts load from CDNs, so an internet connection is needed.
-- The current 3D fox emblem is procedural placeholder geometry, not a production-quality fox-head model. Replace the placeholder group in redesign.js with a properly licensed .glb fox model for the intended final look.
-- Existing secondary pages are preserved and have not yet been visually redesigned to match the homepage.
-- Firebase.js contains web-app configuration from the supplied project. Review Firebase security rules and rotate credentials if you believe they were exposed; Firebase web API keys are normally public identifiers, but access must be secured by rules.
+Notes:
+- The homepage Three.js scene and Google Fonts use external CDNs, so internet access is needed for those resources.
+- The homepage fox emblem is still procedural placeholder geometry, not a production-quality fox-head model.
+- This is a first-pass visual integration. Please test Firebase authentication, Settings, all external links, and form behavior in a local browser before publishing.
+- Firebase.js includes client-side Firebase configuration. Review Firebase security rules and never add private service-account keys or secrets to client files.

@@ -105,12 +105,12 @@ if(logoutBtn){
 
 }
 const page = window.location.href;
-if (page.includes("Profile.html")) {
+if (page.toLowerCase().includes("profile.html")) {
 
     onAuthStateChanged(auth, (user) => {
 
         if (!user) {
-            location.href = "HTMLPage1.html";
+            location.href = "index.html";
             return;
         }
 
@@ -131,7 +131,7 @@ if (page.includes("Settings.html")) {
        
 
         if (!user) {
-            location.href = "HTMLPage1.html";
+            location.href = "index.html";
             return;
            
           

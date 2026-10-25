@@ -43,7 +43,7 @@ function initializeAccount(){
 
     removeButton.addEventListener("click", () => {
 
-    avatar.src = "images/default-avatar.png";
+    avatar.src = "Images/Logo.jpg";
     photoInput.value = "";
 
 });
