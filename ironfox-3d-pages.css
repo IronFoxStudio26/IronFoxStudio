@@ -131,3 +131,89 @@ body.if-page-about section.about p{color:#c7ccd5;line-height:1.85}
   .game-card img,.gallery img,.screenshots img { display:block!important; width:100%!important; max-width:100%!important; height:auto!important; object-fit:cover!important; }
   .download-btn,.button,.btn,.contact-btn { max-width:100%!important; white-space:normal!important; overflow-wrap:anywhere!important; }
 }
+
+
+/* MOBILE OVERLAP FIX v3 — keep page labels, intro copy and sections in normal flow */
+@media (max-width: 650px) {
+  html, body { max-width:100%; overflow-x:hidden!important; }
+  body.if-universe-page { overflow-x:clip!important; }
+  .if-page-intro {
+    display:flex!important; flex-direction:column!important; align-items:flex-start!important;
+    justify-content:flex-start!important; gap:0!important;
+    width:100%!important; max-width:100%!important;
+    min-height:0!important; height:auto!important;
+    margin:0 0 24px!important; padding:38px 22px 34px!important;
+    box-sizing:border-box!important; overflow:hidden!important;
+    position:relative!important; inset:auto!important;
+  }
+  .if-page-intro .if-kicker {
+    display:flex!important; position:relative!important; inset:auto!important;
+    order:0!important; width:100%!important; max-width:100%!important;
+    margin:0 0 22px!important; padding:0!important;
+    font-size:10px!important; line-height:1.65!important;
+    letter-spacing:.12em!important; white-space:normal!important;
+    overflow-wrap:anywhere!important;
+  }
+  .if-page-intro h1 {
+    display:block!important; position:relative!important; inset:auto!important;
+    order:1!important; width:100%!important; max-width:100%!important;
+    margin:0 0 18px!important; padding:0!important;
+    font-size:clamp(36px, 10.2vw, 58px)!important;
+    line-height:1.02!important; letter-spacing:-.055em!important;
+    overflow-wrap:normal!important; word-break:normal!important;
+  }
+  .if-page-intro p {
+    display:block!important; position:relative!important; inset:auto!important;
+    order:2!important; width:100%!important; max-width:100%!important;
+    margin:0!important; padding:0!important;
+    font-size:16px!important; line-height:1.7!important;
+    overflow-wrap:break-word!important;
+  }
+  .if-page-intro .if-scene-tag {
+    display:none!important; position:static!important;
+  }
+  .if-page-intro:before { right:-65px!important; top:55%!important; width:190px!important; opacity:.55!important; }
+  .if-page-intro:after { right:28px!important; top:55%!important; width:54px!important; opacity:.45!important; }
+  .if-page-intro + .about,
+  .if-page-intro + .contacts,
+  .if-page-intro + .games-container,
+  .if-page-intro + .timeline,
+  .if-page-intro + main,
+  .if-page-intro + section {
+    margin-top:0!important;
+  }
+  body.if-page-about .about,
+  body.if-page-contacts .contacts,
+  body.if-page-games .games-container,
+  body.if-page-projects .games-container,
+  body.if-page-shadow-game .game-page,
+  body.if-page-cowboy-game .game-page {
+    margin-top:0!important;
+  }
+  header { position:relative!important; z-index:20!important; }
+  header nav {
+    display:flex!important; flex-wrap:wrap!important; align-items:center!important;
+    justify-content:space-between!important; gap:10px!important;
+    width:100%!important; max-width:100%!important;
+    margin:0!important; padding:12px 16px!important; box-sizing:border-box!important;
+  }
+  header .logo, header nav .logo {
+    flex:0 1 auto!important; min-width:0!important; max-width:100%!important;
+    margin:0!important; font-size:clamp(15px,4.3vw,20px)!important;
+    line-height:1.2!important; white-space:normal!important;
+  }
+  header .logo img, header nav .logo img { width:36px!important; height:36px!important; object-fit:cover!important; }
+  header .menu, header nav .menu {
+    display:flex!important; flex:1 0 100%!important; order:3!important;
+    justify-content:center!important; align-items:center!important;
+    gap:clamp(14px,5vw,28px)!important; flex-wrap:wrap!important;
+    width:100%!important; margin:8px 0 0!important; padding:0!important;
+  }
+  header .menu a, header nav .menu a {
+    font-size:11px!important; line-height:1.5!important; white-space:nowrap!important;
+  }
+  .about, .contacts, .games-container, .timeline, .game-page, .profile-page {
+    box-sizing:border-box!important; max-width:calc(100% - 24px)!important;
+    width:calc(100% - 24px)!important; margin-left:12px!important; margin-right:12px!important;
+  }
+}
