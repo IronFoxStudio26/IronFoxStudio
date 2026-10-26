@@ -429,3 +429,92 @@ main > section.nexus-hero .nexus-bottomline {
   main > section.nexus-hero .nexus-bottomline span:last-child { display: none !important; }
   main > section.nexus-hero #fox-canvas { opacity: .32 !important; }
 }
+
+/* HOTFIX: keep each destination card's text in its own vertical layout.
+   Scope is deliberately narrow to avoid affecting the header and other pages. */
+main > section.nexus-hero .nexus-destinations > a.nexus-destination {
+  display: flex !important;
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  align-items: flex-start !important;
+  justify-content: flex-end !important;
+  text-align: left !important;
+  white-space: normal !important;
+  overflow-wrap: normal !important;
+  line-height: 1.35 !important;
+}
+main > section.nexus-hero .nexus-destinations > a.nexus-destination > span.nexus-destination-index,
+main > section.nexus-hero .nexus-destinations > a.nexus-destination > span.nexus-destination-icon,
+main > section.nexus-hero .nexus-destinations > a.nexus-destination > span.nexus-destination-title,
+main > section.nexus-hero .nexus-destinations > a.nexus-destination > span.nexus-destination-sub,
+main > section.nexus-hero .nexus-destinations > a.nexus-destination > span.nexus-destination-arrow {
+  flex: 0 0 auto !important;
+  float: none !important;
+  clear: both !important;
+  position: relative !important;
+  inset: auto !important;
+  transform: none;
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-indent: 0 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  overflow-wrap: anywhere !important;
+  word-break: normal !important;
+  writing-mode: horizontal-tb !important;
+}
+main > section.nexus-hero .nexus-destinations > a.nexus-destination > span.nexus-destination-index {
+  position: absolute !important;
+  inset: 15px 14px auto 14px !important;
+  width: auto !important;
+  font-size: 8px !important;
+  line-height: 1.4 !important;
+  letter-spacing: .13em !important;
+}
+main > section.nexus-hero .nexus-destinations > a.nexus-destination > span.nexus-destination-icon {
+  width: auto !important;
+  font-size: 28px !important;
+  line-height: 1.2 !important;
+  margin-bottom: 5px !important;
+}
+main > section.nexus-hero .nexus-destinations > a.nexus-destination > span.nexus-destination-title {
+  font-size: clamp(13px,1.3vw,19px) !important;
+  line-height: 1.25 !important;
+  letter-spacing: .07em !important;
+  font-weight: 850 !important;
+}
+main > section.nexus-hero .nexus-destinations > a.nexus-destination > span.nexus-destination-sub {
+  font-size: 10px !important;
+  line-height: 1.5 !important;
+  letter-spacing: normal !important;
+  color: #aebdce !important;
+}
+main > section.nexus-hero .nexus-destinations > a.nexus-destination > span.nexus-destination-arrow {
+  position: absolute !important;
+  inset: auto 12px 13px auto !important;
+  width: auto !important;
+  font-size: 18px !important;
+}
+@media (max-width: 600px) {
+  main > section.nexus-hero .nexus-destinations > a.nexus-destination {
+    display: flex !important;
+    min-height: 100px !important;
+    padding: 36px 45px 15px 68px !important;
+    justify-content: center !important;
+  }
+  main > section.nexus-hero .nexus-destinations > a.nexus-destination > span.nexus-destination-index {
+    inset: 12px 45px auto 68px !important;
+    width: auto !important;
+  }
+  main > section.nexus-hero .nexus-destinations > a.nexus-destination > span.nexus-destination-icon {
+    position: absolute !important;
+    inset: 36px auto auto 18px !important;
+    width: auto !important;
+  }
+  main > section.nexus-hero .nexus-destinations > a.nexus-destination > span.nexus-destination-arrow {
+    inset: auto 16px 36px auto !important;
+  }
+}
