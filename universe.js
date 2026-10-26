@@ -16,7 +16,7 @@
     const nav = document.createElement('nav');
     nav.className = 'universe-nav';
     nav.setAttribute('aria-label', 'Main navigation');
-    nav.innerHTML = '<a href="index.html" class="logo">IRON FOX <span style="color:#ff641e">/</span> STUDIO</a><div class="menu"><a href="HTMLPage2.html">Games</a><a href="About.html">About</a><a href="Contacts.html">Contacts</a></div><a class="back" href="index.html">Back to Nexus ↗</a>';
+    nav.innerHTML = '<a href="index.html" class="logo if-universe-brand"><img src="Images/Logo.jpg" alt="" width="38" height="38"><span>IRON FOX <i>/</i> STUDIO</span></a><div class="menu"><a href="HTMLPage2.html">Games</a><a href="About.html">About</a><a href="Contacts.html">Contacts</a></div><a class="back" href="index.html">Back to Nexus ↗</a>';
     header.replaceChildren(nav);
   }
 
@@ -46,6 +46,46 @@
   }
 
   // Preserve a clear interaction signal for keyboard and touch users.
+
+  // Cinematic portal transition for same-site navigation. External links and downloads stay native.
+  if (!reduceMotion) {
+    const portal = document.createElement('div');
+    portal.className = 'if-portal-transition';
+    portal.setAttribute('aria-hidden', 'true');
+    portal.innerHTML = '<span class="if-portal-transition-label">Entering the next world · Iron Fox Studio</span>';
+    document.body.appendChild(portal);
+    let navigating = false;
+    document.addEventListener('click', event => {
+      const link = event.target.closest('a[href]');
+      if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (link.target === '_blank' || link.hasAttribute('download')) return;
+      let url;
+      try { url = new URL(link.href, location.href); } catch (_) { return; }
+      if (url.origin !== location.origin || url.pathname === location.pathname && url.hash) return;
+      if (!/\.html?$/i.test(url.pathname) && !url.pathname.endsWith('/')) return;
+      if (navigating) { event.preventDefault(); return; }
+      navigating = true;
+      event.preventDefault();
+      portal.classList.add('is-active');
+      window.setTimeout(() => { location.href = url.href; }, 260);
+    });
+  }
+
+  // Add original logo styling only to the legacy projects header rebuilt above.
+  const injectedBrand = document.querySelector('.if-universe-brand');
+  if (injectedBrand) {
+    injectedBrand.style.display = 'inline-flex';
+    injectedBrand.style.alignItems = 'center';
+    injectedBrand.style.gap = '10px';
+    injectedBrand.style.color = 'inherit';
+    const brandImg = injectedBrand.querySelector('img');
+    if (brandImg) { brandImg.style.width = '38px'; brandImg.style.height = '38px'; brandImg.style.objectFit = 'contain'; brandImg.style.borderRadius = '50%'; }
+    const brandText = injectedBrand.querySelector('span');
+    if (brandText) { brandText.style.fontSize = 'clamp(15px,2vw,22px)'; brandText.style.fontWeight = '800'; brandText.style.letterSpacing = '.04em'; }
+    const slash = injectedBrand.querySelector('i');
+    if (slash) { slash.style.color = '#ff641e'; slash.style.fontStyle = 'normal'; }
+  }
+
   document.querySelectorAll('.project-card, .game-card, .contact-card, .project').forEach(card => {
     card.addEventListener('pointerenter', () => card.classList.add('is-focused'));
     card.addEventListener('pointerleave', () => card.classList.remove('is-focused'));
