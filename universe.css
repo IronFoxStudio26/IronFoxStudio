@@ -125,3 +125,171 @@ button:focus-visible,a:focus-visible{outline:2px solid #ff9a4d!important;outline
 .game-card-link p{color:#b4b7bf!important}
 header .universe-nav{width:100%;}
 @media(max-width:760px){header .universe-nav{flex-wrap:wrap}.universe-nav .menu{flex:1;justify-content:center}}
+
+/* Mobile-first finishing pass: safe spacing, readable headings, touch targets and lighter 3D decoration. */
+html { -webkit-text-size-adjust: 100%; }
+body { width: 100%; max-width: 100%; overflow-x: clip; }
+img, video, canvas, svg { max-width: 100%; }
+button, a { -webkit-tap-highlight-color: transparent; }
+a, button, input, select, textarea { touch-action: manipulation; }
+:focus-visible { outline: 2px solid var(--orange, #ff5a1f); outline-offset: 3px; }
+
+@media (max-width: 760px) {
+  .site-header, header { max-width: 100%; }
+  .nav-links { max-width: 100vw; }
+  .section-heading { min-width: 0; }
+  .section-heading h1, .section-heading h2, .hero h1,
+  .page-hero h1, .universe-hero h1, .if-hero h1 {
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+  .project-grid, .capability-grid, .game-grid, .cards-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .project-card, .project-card:last-child {
+    grid-column: auto !important;
+    min-width: 0;
+  }
+  .button, .nav-cta, .round-arrow, .menu-toggle {
+    min-height: 44px;
+  }
+  .hero-actions { max-width: 100%; }
+  .hero-actions > * { max-width: 100%; }
+  .section-wrap, main, .page-content { min-width: 0; }
+  .if-3d-ambient, .portal-ring, .portal-orbit { pointer-events: none; }
+}
+@media (max-width: 480px) {
+  .site-header { padding-left: 14px; padding-right: 14px; }
+  .brand { gap: 8px; letter-spacing: .14em; }
+  .brand small { letter-spacing: .28em; }
+  .section-wrap { padding-left: 16px; padding-right: 16px; }
+  .section-heading h1, .section-heading h2 { font-size: clamp(2.25rem, 12vw, 3.6rem); }
+  .project-card, .project-card:last-child { min-height: 330px; }
+  .project-info { padding: 18px; }
+  .project-info h3 { font-size: clamp(1.8rem, 9vw, 2.3rem); }
+  .project-info p { max-width: 100%; }
+  footer { padding-left: 16px; padding-right: 16px; overflow-wrap: anywhere; }
+  .nav-links { padding-left: 16px; padding-right: 16px; }
+}
+@media (hover: none) and (pointer: coarse) {
+  .project-card:hover img, .button:hover { transform: none; }
+}
+@media (max-width: 760px), (prefers-reduced-motion: reduce) {
+  .if-3d-ambient { opacity: .55; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
+
+/* CINEMATIC GAME HUB — tactile controls, dimensional panels and portal travel */
+:root {
+  --if-depth-shadow: 0 18px 0 rgba(0,0,0,.28), 0 24px 55px rgba(0,0,0,.34);
+  --if-hub-cyan: #70cfff;
+}
+.site-header { transform: translateZ(0); }
+.nav-links a, .menu a, .button, .nav-cta, .back, .project-card,
+.game-card, .contact-btn, .download-btn, .saveBtn, .profile-box button {
+  transform-style: preserve-3d;
+  transition: transform .22s cubic-bezier(.2,.8,.2,1), box-shadow .22s, border-color .22s, filter .22s;
+}
+.nav-links a:not(.nav-cta), .menu a {
+  padding: 12px 14px !important;
+  border: 1px solid transparent;
+  border-radius: 7px;
+}
+.nav-links a:not(.nav-cta):hover, .menu a:hover {
+  border-color: rgba(112,207,255,.28);
+  background: linear-gradient(145deg,rgba(112,207,255,.10),rgba(255,100,30,.07));
+  box-shadow: inset 0 1px rgba(255,255,255,.12), 0 7px 20px rgba(0,0,0,.22);
+  transform: translateY(-3px) perspective(500px) rotateX(3deg);
+}
+.nav-cta, .button, .btn, .contact-btn, .back, .download-btn, .saveBtn {
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 1px rgba(255,255,255,.24), 0 5px 0 #7d290e, 0 12px 28px rgba(255,83,23,.20) !important;
+}
+.nav-cta::before, .button::before, .btn::before, .contact-btn::before, .back::before,
+.download-btn::before, .saveBtn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg,transparent 20%,rgba(255,255,255,.25) 48%,transparent 72%);
+  transform: translateX(-130%);
+  transition: transform .55s ease;
+  pointer-events: none;
+}
+.nav-cta:hover::before, .button:hover::before, .btn:hover::before, .contact-btn:hover::before,
+.back:hover::before, .download-btn:hover::before, .saveBtn:hover::before { transform: translateX(130%); }
+.nav-cta:active, .button:active, .btn:active, .contact-btn:active, .back:active,
+.download-btn:active, .saveBtn:active, .if-game-pressed {
+  transform: translateY(4px) scale(.985) !important;
+  box-shadow: inset 0 3px 9px rgba(0,0,0,.32), 0 1px 0 #7d290e, 0 4px 12px rgba(255,83,23,.18) !important;
+}
+.project-card, .game-card, .card, .contact-card {
+  box-shadow: inset 0 1px rgba(255,255,255,.06), 0 15px 38px rgba(0,0,0,.24);
+}
+.project-card:hover, .game-card:hover, .card:hover, .contact-card:hover {
+  border-color: rgba(255,100,30,.55) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.12), 0 20px 55px rgba(255,83,23,.13);
+}
+.if-portal-transition {
+  position: fixed !important;
+  z-index: 99999 !important;
+  inset: 0 !important;
+  display: grid !important;
+  place-items: center !important;
+  overflow: hidden !important;
+  background:
+    radial-gradient(circle at center,rgba(255,100,30,.10),transparent 24%),
+    radial-gradient(circle at center,#080b14 0%,#030407 72%) !important;
+  opacity: 0;
+  visibility: hidden;
+  clip-path: circle(0 at var(--if-portal-x,50%) var(--if-portal-y,50%));
+  transition: clip-path .58s cubic-bezier(.7,0,.2,1), opacity .18s, visibility .18s;
+  pointer-events: none;
+}
+.if-portal-transition::before, .if-portal-transition::after {
+  content: "";
+  position: absolute;
+  left: var(--if-portal-x,50%); top: var(--if-portal-y,50%);
+  width: min(76vw,650px); aspect-ratio: 1;
+  border: 1px solid rgba(255,100,30,.9);
+  border-radius: 50%;
+  transform: translate(-50%,-50%) rotateX(62deg) scale(.35);
+  box-shadow: 0 0 25px rgba(255,100,30,.5), inset 0 0 35px rgba(255,100,30,.15);
+}
+.if-portal-transition::after {
+  width: min(57vw,480px);
+  border-color: rgba(112,207,255,.65);
+  transform: translate(-50%,-50%) rotateX(62deg) rotate(35deg) scale(.35);
+  box-shadow: 0 0 28px rgba(112,207,255,.22), inset 0 0 25px rgba(112,207,255,.08);
+}
+.if-portal-transition.is-active {
+  opacity: 1; visibility: visible; clip-path: circle(150% at var(--if-portal-x,50%) var(--if-portal-y,50%));
+}
+.if-portal-transition.is-active::before { animation: if-portal-spin .75s ease-out both; }
+.if-portal-transition.is-active::after { animation: if-portal-spin-reverse .85s ease-out both; }
+.if-portal-transition-label {
+  position: relative; z-index: 1; margin-top: min(35vh,260px);
+  color: #f6e8de; font-size: 10px; font-weight: 800; letter-spacing: .24em;
+  text-transform: uppercase; text-align: center; text-shadow: 0 0 24px rgba(255,100,30,.6);
+}
+.if-hub-pulse {
+  position: fixed; z-index: 9998; width: 12px; height: 12px; border-radius: 50%;
+  pointer-events: none; border: 1px solid rgba(255,126,65,.9);
+  box-shadow: 0 0 18px rgba(255,100,30,.7);
+  transform: translate(-50%,-50%) scale(.2); animation: if-hub-pulse .48s ease-out forwards;
+}
+@keyframes if-portal-spin { to { transform:translate(-50%,-50%) rotateX(62deg) rotate(145deg) scale(1.15); opacity:0; } }
+@keyframes if-portal-spin-reverse { to { transform:translate(-50%,-50%) rotateX(62deg) rotate(-125deg) scale(1.3); opacity:0; } }
+@keyframes if-hub-pulse { to { transform:translate(-50%,-50%) scale(8); opacity:0; } }
+@media (max-width:760px) {
+  .nav-links a, .menu a { min-height:44px; display:flex; align-items:center; }
+  .if-portal-transition::before { width:min(115vw,540px); }
+  .if-portal-transition::after { width:min(90vw,410px); }
+  .if-portal-transition-label { font-size:9px; letter-spacing:.15em; padding:0 18px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .nav-links a, .menu a, .button, .nav-cta, .back, .project-card { transition:none !important; }
+  .if-portal-transition, .if-portal-transition::before, .if-portal-transition::after { animation:none !important; transition:none !important; }
+}
