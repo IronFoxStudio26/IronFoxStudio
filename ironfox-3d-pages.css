@@ -744,3 +744,67 @@ main > section.floating-worlds {
   .fw-island-center {top:22%!important}
   .fw-world-nav {padding-top:clamp(300px,43vh,400px)!important}
 }
+
+/* FULLSCREEN BLEED: extend the floating-world sky across the entire viewport */
+html:has(.floating-worlds), body:has(.floating-worlds) {
+  width:100%!important;
+  min-width:0!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+  overflow-x:hidden!important;
+  background:#101b3c!important;
+}
+body:has(.floating-worlds) {
+  min-height:100svh!important;
+  background:
+    radial-gradient(ellipse at 50% 45%,rgba(74,119,224,.24),transparent 52%),
+    linear-gradient(180deg,#111a39 0%,#253d76 48%,#667db8 72%,#202b53 100%)!important;
+}
+body:has(.floating-worlds) > * {
+  box-sizing:border-box;
+}
+body:has(.floating-worlds) main,
+body:has(.floating-worlds) main:has(.floating-worlds) {
+  display:block!important;
+  position:relative!important;
+  width:100vw!important;
+  max-width:none!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:0!important;
+  left:0!important;
+  right:0!important;
+  transform:none!important;
+  background:transparent!important;
+  overflow:visible!important;
+}
+main > section.floating-worlds {
+  width:100vw!important;
+  max-width:none!important;
+  min-width:0!important;
+  min-height:100svh!important;
+  height:100svh!important;
+  max-height:none!important;
+  margin:0!important;
+  left:0!important;
+  right:0!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+/* Keep the same sky behind any browser rounding / subpixel gaps. */
+.fw-sky {
+  position:fixed!important;
+  z-index:-5!important;
+  inset:0!important;
+  width:100vw!important;
+  height:100svh!important;
+}
+@media(max-width:760px) {
+  main > section.floating-worlds {
+    width:100vw!important;
+    height:auto!important;
+    min-height:100svh!important;
+  }
+}
