@@ -665,3 +665,82 @@ main > section.floating-worlds {
 }
 @media(max-width:390px){.fw-world-nav{padding-top:300px}.fw-brand-overline{font-size:8px}.fw-status span:last-child{display:none}}
 @media(prefers-reduced-motion:reduce){.fw-world,.fw-world::before,.fw-brand-button{transition:none!important}}
+
+/* HOME-ONLY HUB: remove every section below the floating-worlds hero */
+body:has(main > .floating-worlds) main > section:not(.floating-worlds) { display:none !important; }
+body:has(main > .floating-worlds) main > footer,
+body:has(main > .floating-worlds) footer { display:none !important; }
+body:has(main > .floating-worlds) .site-footer,
+body:has(main > .floating-worlds) .footer { display:none !important; }
+body:has(main > .floating-worlds) main { padding-bottom:0!important; margin-bottom:0!important; }
+body:has(main > .floating-worlds) { overflow-x:hidden!important; }
+
+/* Enhanced floating-world panorama: layered clouds, floating rock silhouettes, aurora and distant stars */
+main > section.floating-worlds {
+  min-height:100svh!important;
+  height:100svh!important;
+  max-height:100svh!important;
+  overflow:hidden!important;
+  background:#101b3c!important;
+}
+.fw-sky {
+  background:
+    radial-gradient(ellipse at 48% 63%,rgba(255,193,153,.52),transparent 29%),
+    radial-gradient(ellipse at 18% 38%,rgba(100,155,255,.42),transparent 35%),
+    radial-gradient(ellipse at 80% 32%,rgba(151,105,255,.48),transparent 38%),
+    linear-gradient(180deg,#080f27 0%,#1a3670 30%,#627fc1 55%,#e5a6ad 74%,#202b53 100%)!important;
+}
+.fw-stars {
+  opacity:.78!important;
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,.95) .8px,transparent 1.6px),
+    radial-gradient(circle,rgba(175,216,255,.9) 1px,transparent 1.9px),
+    radial-gradient(circle,rgba(255,190,153,.75) .7px,transparent 1.5px)!important;
+  background-size:67px 67px,113px 113px,173px 173px!important;
+  background-position:7px 17px,39px 51px,81px 24px!important;
+}
+.fw-planet {
+  top:7%!important;left:60%!important;width:min(37vw,470px)!important;
+  background:
+    radial-gradient(circle at 32% 27%,rgba(255,244,240,.98),rgba(184,201,255,.94) 27%,rgba(108,127,204,.92) 57%,rgba(48,67,133,.96) 78%,rgba(20,32,76,.98) 100%)!important;
+  box-shadow:0 0 90px rgba(137,173,255,.35),inset -35px -25px 65px rgba(12,22,63,.3)!important;
+}
+.fw-halo {
+  top:24%!important;width:min(85vw,1100px)!important;height:min(27vw,330px)!important;
+  border-color:rgba(255,208,178,.58)!important;
+  box-shadow:0 0 45px rgba(255,165,145,.2),inset 0 0 55px rgba(255,180,155,.12)!important;
+}
+.fw-island {
+  background:linear-gradient(145deg,#6f7899 0%,#353f67 42%,#151d39 72%,#080e20 100%)!important;
+  filter:drop-shadow(0 24px 22px rgba(0,0,0,.4))!important;
+}
+.fw-island-center {
+  top:27%!important;left:36%!important;width:29%!important;height:31%!important;
+  background:linear-gradient(145deg,#a1a9c9 0%,#555f88 35%,#273455 66%,#111a32 100%)!important;
+}
+.fw-island-left {top:42%!important}
+.fw-island-right {top:41%!important}
+.fw-waterfall {
+  background:linear-gradient(180deg,#e4f5ff,rgba(112,199,255,.72),rgba(75,137,255,.05))!important;
+  filter:blur(6px)!important;box-shadow:0 0 22px rgba(115,200,255,.65)!important;
+}
+.fw-tree {background:radial-gradient(ellipse at 50% 65%,#ffc0aa,#a75a86 58%,transparent 74%)!important}
+.fw-bridge {border-top-color:rgba(255,220,194,.9)!important;box-shadow:0 0 18px rgba(255,176,148,.62)!important}
+.fw-brand {top:4.5%!important}
+.fw-world-nav {top:40%!important}
+.fw-world {
+  background-color:rgba(11,19,43,.75)!important;
+  border-color:rgba(225,236,255,.42)!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.18),0 22px 44px rgba(0,0,0,.34),0 0 26px rgba(133,177,255,.08)!important;
+}
+.fw-world-games {background:linear-gradient(180deg,rgba(255,167,113,.30),rgba(24,20,45,.91))!important}
+.fw-world-about {background:linear-gradient(180deg,rgba(106,197,255,.30),rgba(12,25,54,.92))!important}
+.fw-world-contacts {background:linear-gradient(180deg,rgba(185,135,255,.32),rgba(22,16,50,.92))!important}
+.fw-status {text-shadow:0 1px 6px rgba(0,0,0,.5)!important}
+@media(max-width:760px) {
+  main > section.floating-worlds {height:auto!important;max-height:none!important;min-height:100svh!important;overflow:hidden!important}
+  .fw-planet {top:8%!important;left:35%!important;width:68vw!important}
+  .fw-halo {top:19%!important;width:120vw!important;height:42vw!important}
+  .fw-island-center {top:22%!important}
+  .fw-world-nav {padding-top:clamp(300px,43vh,400px)!important}
+}
