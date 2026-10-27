@@ -940,3 +940,41 @@ main > section.floating-worlds .fw-sky {
     background-size: cover !important;
   }
 }
+/* Центрируем GAMES / ABOUT / CONTACTS */ .fw-world-nav { position: absolute !important; left: 50% !important; right: auto !important; width: min(1120px, calc(100% - 80px)) !important; margin: 0 !important; transform: translateX(-50%) !important; box-sizing: border-box !important; }
+/* Центрируем верхний логотип Iron Fox Studio */ .fw-brand { left: 50% !important; right: auto !important; margin: 0 !important; transform: translateX(-50%) !important; }
+/* Мобильная версия */ @media (max-width: 760px) { .fw-world-nav { left: auto !important; width: auto !important; margin-left: 17px !important; margin-right: 17px !important; transform: none !important; }
+.fw-brand {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+}
+}
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+body:has(.floating-worlds) main {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.floating-worlds {
+    position: relative !important;
+    width: 100vw !important;
+    max-width: none !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+}
+
+.fw-sky {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+}
