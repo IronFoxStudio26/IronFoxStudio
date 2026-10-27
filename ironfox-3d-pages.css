@@ -605,24 +605,3 @@ main > section.universe-stage #fox-canvas {position:absolute!important;z-index:2
  .universe-ring,.universe-core-light {animation:none!important}
  .universe-gates > a.universe-gate,.universe-gate::before,.universe-gate::after {transition:none!important}
 }
-/* FOX TEMPLE theme */
-main > section.universe-stage {background:radial-gradient(ellipse at 50% 43%,rgba(255,100,30,.23),transparent 26%),radial-gradient(ellipse at 50% 68%,rgba(44,116,189,.13),transparent 38%),linear-gradient(180deg,#09080c 0%,#17111a 44%,#08090e 100%)!important}
-.universe-nebula {background:radial-gradient(ellipse at 18% 46%,rgba(197,68,22,.20),transparent 30%),radial-gradient(ellipse at 85% 24%,rgba(89,71,155,.19),transparent 34%),radial-gradient(ellipse at 50% 100%,rgba(255,115,42,.10),transparent 42%)!important}
-.universe-stars {opacity:.4!important;background-image:radial-gradient(circle,rgba(255,200,149,.8) .8px,transparent 1.7px),radial-gradient(circle,rgba(117,184,255,.6) 1px,transparent 1.8px)!important}
-.universe-floor {background-image:linear-gradient(rgba(255,131,68,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(255,131,68,.12) 1px,transparent 1px)!important}
-.universe-ring {border-color:rgba(255,132,65,.68)!important;box-shadow:0 0 30px rgba(255,90,28,.20),inset 0 0 50px rgba(255,94,34,.10)!important}
-.universe-ring-b {border-color:rgba(100,177,255,.40)!important}.universe-ring-c {border-color:rgba(255,202,146,.28)!important}
-.universe-core {background:radial-gradient(circle at 40% 30%,rgba(255,211,160,.96),rgba(255,101,36,.64) 19%,rgba(94,55,85,.42) 49%,rgba(4,9,20,.05) 72%)!important;filter:drop-shadow(0 0 42px rgba(255,91,32,.43))!important}
-.universe-core-light {border-color:rgba(255,192,123,.78)!important;box-shadow:0 0 42px rgba(255,99,39,.44),inset 0 0 32px rgba(255,168,95,.20)!important}
-.universe-core-mark {color:#ffd0a0!important;text-shadow:0 0 28px #ff6c35!important}.universe-heading h1 em {color:#ff8a48!important;text-shadow:0 0 46px rgba(255,93,36,.42)!important}
-.universe-kicker span {background:#ff8a48!important;box-shadow:0 0 14px #ff783b!important}
-.universe-gates > a.universe-gate {border-color:rgba(210,147,105,.34)!important;background:linear-gradient(145deg,rgba(48,32,34,.92),rgba(13,11,17,.96))!important;box-shadow:inset 0 1px rgba(255,220,190,.10),0 18px 45px rgba(0,0,0,.36)!important}
-.universe-gates > a.universe-gate:hover {border-color:rgba(255,143,73,.85)!important;box-shadow:inset 0 1px rgba(255,226,196,.16),0 26px 55px rgba(0,0,0,.44),0 0 30px rgba(255,97,33,.16)!important}
-.universe-gate .gate-symbol {color:#ffab69!important;text-shadow:0 0 25px rgba(255,101,42,.56)!important}.universe-gate .gate-status {color:#e4c39f!important}
-.universe-gate .gate-status i {background:#ffb16f!important;box-shadow:0 0 9px #ff9a4f!important}
-.universe-gates > a.gate-games {background:linear-gradient(145deg,rgba(76,37,25,.94),rgba(15,10,15,.97))!important}
-.universe-gates > a.gate-about {background:linear-gradient(145deg,rgba(31,44,62,.94),rgba(9,12,21,.97))!important}
-.universe-gates > a.gate-contact {background:linear-gradient(145deg,rgba(43,30,61,.94),rgba(10,9,19,.97))!important}
-.universe-gate .gate-topline {color:#c4ad9e!important}.universe-gate .gate-caption {color:#d1c2b9!important}
-.universe-hud {color:#bca89b!important}.universe-hud b {color:#ffe0c0!important}
-@media(max-width:600px){.universe-ring{opacity:.6}.universe-floor{opacity:.65}}
