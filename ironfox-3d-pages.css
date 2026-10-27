@@ -605,3 +605,63 @@ main > section.universe-stage #fox-canvas {position:absolute!important;z-index:2
  .universe-ring,.universe-core-light {animation:none!important}
  .universe-gates > a.universe-gate,.universe-gate::before,.universe-gate::after {transition:none!important}
 }
+/* FLOATING WORLDS HUB — homepage-only, self-contained layout */
+body:has(.floating-worlds) {margin:0;background:#070b16;overflow-x:hidden}
+body:has(.floating-worlds) > .site-header {display:none!important}
+main:has(.floating-worlds) {margin:0!important;padding:0!important;max-width:none!important;width:100%!important}
+main > section.floating-worlds {
+ position:relative!important;isolation:isolate!important;display:block!important;overflow:hidden!important;
+ width:100%!important;max-width:none!important;min-width:0!important;min-height:100svh!important;height:auto!important;
+ margin:0!important;padding:0!important;color:#f8f5ff!important;
+ background:linear-gradient(180deg,#111c3a 0%,#3c4b79 37%,#f28d75 70%,#151b35 100%)!important;
+}
+.fw-sky{position:absolute;inset:0;z-index:-5;background:radial-gradient(ellipse at 18% 40%,rgba(255,187,136,.68),transparent 31%),radial-gradient(ellipse at 83% 35%,rgba(130,91,218,.52),transparent 34%),linear-gradient(180deg,#111a36 0%,#344b78 42%,#f0a18a 70%,#171d36 100%)}
+.fw-stars{position:absolute;inset:0;z-index:-4;opacity:.68;background-image:radial-gradient(circle,white .8px,transparent 1.6px),radial-gradient(circle,#9bd7ff 1px,transparent 1.8px);background-size:73px 73px,127px 127px;background-position:5px 13px,47px 61px}
+.fw-planet{position:absolute;z-index:-3;top:4%;left:60%;width:min(40vw,480px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 30% 28%,#f7d5cc,#9d9dc4 38%,#3e4a77 70%,#1a2446 100%);opacity:.7;box-shadow:0 0 100px rgba(144,164,255,.25)}
+.fw-halo{position:absolute;z-index:-2;top:20%;left:50%;width:min(78vw,1050px);height:min(25vw,310px);border:2px solid rgba(255,177,117,.48);border-radius:50%;transform:translateX(-50%) rotate(-13deg);box-shadow:0 0 42px rgba(255,133,94,.17),inset 0 0 45px rgba(255,133,94,.12)}
+.fw-island{position:absolute;z-index:0;background:linear-gradient(145deg,#4a4f6a,#171d31 60%,#080e1b);clip-path:polygon(0 0,100% 0,88% 38%,68% 64%,57% 100%,41% 73%,18% 59%);filter:drop-shadow(0 22px 18px rgba(0,0,0,.38))}
+.fw-island-center{top:27%;left:36%;width:29%;height:31%;clip-path:polygon(8% 0,92% 0,100% 30%,78% 62%,62% 100%,38% 100%,22% 62%,0 30%);background:linear-gradient(145deg,#6d718b,#252e4b 56%,#10182b)}
+.fw-island-left{top:42%;left:-3%;width:36%;height:30%;transform:rotate(-2deg)}
+.fw-island-right{top:41%;right:-3%;width:36%;height:30%;transform:scaleX(-1) rotate(-2deg)}
+.fw-waterfall{position:absolute;left:42%;top:60%;width:17%;height:65%;background:linear-gradient(180deg,#7de2ff,rgba(88,174,255,.5),transparent);filter:blur(7px);opacity:.8}
+.fw-tree{position:absolute;top:-7%;left:35%;width:27%;height:40%;border-radius:50% 50% 42% 42%;background:radial-gradient(ellipse at 50% 65%,#ffac8d,#a34868 60%,transparent 72%);filter:blur(3px)}
+.fw-bridge{position:absolute;z-index:1;top:58%;width:17%;height:4px;border-top:3px solid rgba(255,205,168,.75);box-shadow:0 0 15px rgba(255,172,120,.4)}
+.fw-bridge-left{left:22%;transform:rotate(-8deg)}.fw-bridge-right{right:22%;transform:rotate(8deg)}
+.fw-brand{position:absolute;z-index:5;top:7%;left:50%;transform:translateX(-50%);width:min(420px,90%);display:flex;align-items:center;flex-direction:column;text-align:center;gap:10px}
+.fw-brand-overline{font-size:9px;letter-spacing:.25em;color:#fbe0d6}
+.fw-brand-button{display:flex;align-items:center;gap:12px;padding:10px 18px;border:1px solid rgba(255,215,187,.55);border-radius:12px;background:linear-gradient(145deg,rgba(15,22,42,.78),rgba(30,35,63,.48));box-shadow:inset 0 1px rgba(255,255,255,.18),0 12px 32px rgba(0,0,0,.23),0 0 25px rgba(255,145,102,.15);color:#fff;text-decoration:none;backdrop-filter:blur(12px);transition:transform .25s,box-shadow .25s}
+.fw-brand-button:hover{transform:translateY(-4px) scale(1.025);box-shadow:0 18px 38px rgba(0,0,0,.3),0 0 35px rgba(255,145,102,.32)}
+.fw-brand-button img{width:42px;height:42px;object-fit:contain;border-radius:50%}
+.fw-brand-button span{display:flex;flex-direction:column;align-items:flex-start;line-height:1.1;letter-spacing:.12em}.fw-brand-button b{font-size:20px}.fw-brand-button small{font-size:8px;letter-spacing:.45em;margin-top:4px}
+.fw-brand-button i{font-style:normal;font-size:22px;color:#ffbd95;margin-left:8px}
+.fw-brand>p{margin:0;font-size:9px;letter-spacing:.23em;color:#fff0e9}
+.fw-world-nav{position:absolute;z-index:6;left:50%;top:39%;transform:translateX(-50%);width:min(1200px,94%);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,2vw,26px);align-items:stretch}
+.fw-world{box-sizing:border-box;position:relative;min-width:0;min-height:250px;padding:22px 20px 18px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:8px;border-radius:14px;border:1px solid rgba(255,255,255,.28);color:#fff;text-decoration:none;overflow:hidden;backdrop-filter:blur(10px);box-shadow:inset 0 1px rgba(255,255,255,.16),0 22px 44px rgba(0,0,0,.32);transition:transform .28s,border-color .28s,box-shadow .28s}
+.fw-world::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,.22) 48%,transparent 70%);transform:translateX(-130%);transition:transform .65s;pointer-events:none}
+.fw-world:hover{transform:translateY(-10px) scale(1.025);border-color:rgba(255,255,255,.8);box-shadow:inset 0 1px rgba(255,255,255,.2),0 30px 60px rgba(0,0,0,.38)}
+.fw-world:hover::before{transform:translateX(130%)}.fw-world:active{transform:translateY(3px) scale(.985)}
+.fw-world-games{background:linear-gradient(180deg,rgba(255,146,76,.25),rgba(33,18,28,.9)),radial-gradient(ellipse at 50% 0%,#f8a168,transparent 65%)}
+.fw-world-about{background:linear-gradient(180deg,rgba(93,186,255,.24),rgba(11,24,49,.92)),radial-gradient(ellipse at 50% 0%,#73cfff,transparent 65%)}
+.fw-world-contacts{background:linear-gradient(180deg,rgba(196,116,255,.26),rgba(23,15,43,.92)),radial-gradient(ellipse at 50% 0%,#b58bff,transparent 65%)}
+.fw-world-symbol{font-size:30px;text-shadow:0 0 25px currentColor}.fw-world-games .fw-world-symbol{color:#ffc08c}.fw-world-about .fw-world-symbol{color:#a4e3ff}.fw-world-contacts .fw-world-symbol{color:#d8b3ff}
+.fw-world-label{font-size:8px;letter-spacing:.18em;color:rgba(255,255,255,.75)}
+.fw-world strong{font-size:clamp(19px,2.2vw,28px);letter-spacing:.09em;line-height:1.2}
+.fw-world small{font-size:11px;color:rgba(255,255,255,.78)}
+.fw-world i{font-style:normal;font-size:8px;letter-spacing:.15em;margin-top:13px;padding-top:12px;border-top:1px solid rgba(255,255,255,.22);width:100%}
+.fw-status{position:absolute;z-index:6;bottom:22px;left:28px;right:28px;display:flex;justify-content:space-between;gap:12px;color:#f4dcd6;font-size:8px;letter-spacing:.16em}
+.fw-status i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#7df0bc;box-shadow:0 0 10px #7df0bc;margin-right:7px}
+@media(max-width:760px){
+ main > section.floating-worlds{min-height:100svh!important;padding:0 0 68px!important}
+ .fw-planet{top:9%;left:37%;width:65vw;opacity:.45}
+ .fw-halo{top:18%;width:115vw;height:36vw}
+ .fw-brand{top:4%;gap:7px}.fw-brand-button{padding:7px 12px}.fw-brand-button img{width:32px;height:32px}.fw-brand-button b{font-size:16px}
+ .fw-island-center{top:22%;left:22%;width:56%;height:22%}.fw-island-left{top:37%;left:-18%;width:60%;height:21%}.fw-island-right{top:37%;right:-18%;width:60%;height:21%}
+ .fw-bridge{top:48%;width:14%}
+ .fw-world-nav{position:relative;top:auto;left:auto;transform:none;width:auto;margin:0 17px;padding-top:clamp(310px,47vh,430px);grid-template-columns:minmax(0,1fr);gap:10px}
+ .fw-world{min-height:106px;padding:15px 18px 14px 68px;justify-content:center;gap:5px;border-radius:11px}
+ .fw-world-symbol{position:absolute;left:20px;top:36px;font-size:25px}
+ .fw-world-label{font-size:7px}.fw-world strong{font-size:17px}.fw-world small{font-size:10px}.fw-world i{width:auto;border:0;padding:0;margin:0;position:absolute;right:15px;bottom:16px;font-size:7px}
+ .fw-status{left:17px;right:17px;bottom:15px;font-size:7px;letter-spacing:.08em}.fw-status span:last-child{max-width:46%;text-align:right}
+}
+@media(max-width:390px){.fw-world-nav{padding-top:300px}.fw-brand-overline{font-size:8px}.fw-status span:last-child{display:none}}
+@media(prefers-reduced-motion:reduce){.fw-world,.fw-world::before,.fw-brand-button{transition:none!important}}
