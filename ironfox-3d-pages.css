@@ -822,3 +822,46 @@ main > section.floating-worlds {
 @media(max-width:760px) {
   .fw-world-nav {left:auto!important;right:auto!important;width:auto!important;margin-left:17px!important;margin-right:17px!important;transform:none!important}
 }
+
+/* NEXUS RIFT: replace abstract gradient scene with the new cinematic artwork */
+main > section.floating-worlds {
+  background:#070d1d!important;
+}
+.fw-sky {
+  position:absolute!important;
+  inset:0!important;
+  z-index:-5!important;
+  background:
+    linear-gradient(180deg,rgba(4,9,24,.16) 0%,rgba(5,10,25,.04) 42%,rgba(5,10,23,.45) 100%),
+    url("Images/nexus-rift-background.png") center center / cover no-repeat!important;
+}
+.fw-stars {
+  opacity:.28!important;
+  background-size:91px 91px,157px 157px!important;
+}
+.fw-planet,.fw-halo,.fw-island,.fw-bridge {
+  display:none!important;
+}
+/* Keep destination panels readable over the cinematic scene */
+.fw-world-nav {top:42%!important}
+.fw-world {
+  background:linear-gradient(180deg,rgba(13,25,48,.76),rgba(5,11,25,.91))!important;
+  border-color:rgba(167,207,255,.45)!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.16),0 22px 44px rgba(0,0,0,.42),0 0 24px rgba(83,156,255,.10)!important;
+}
+.fw-world-games {background:linear-gradient(180deg,rgba(122,61,37,.64),rgba(6,12,28,.91))!important}
+.fw-world-about {background:linear-gradient(180deg,rgba(29,86,137,.68),rgba(5,12,28,.92))!important}
+.fw-world-contacts {background:linear-gradient(180deg,rgba(78,49,128,.67),rgba(8,10,29,.92))!important}
+.fw-brand-button {
+  background:linear-gradient(145deg,rgba(8,17,35,.88),rgba(18,29,53,.74))!important;
+  border-color:rgba(178,211,255,.55)!important;
+}
+.fw-status {text-shadow:0 2px 8px rgba(0,0,0,.85)!important}
+@media(max-width:760px) {
+  .fw-sky {
+    background:
+      linear-gradient(180deg,rgba(4,9,24,.28),rgba(5,10,25,.14) 40%,rgba(5,10,23,.58)),
+      url("Images/nexus-rift-background.png") center center / cover no-repeat!important;
+  }
+  .fw-world-nav {top:auto!important}
+}
