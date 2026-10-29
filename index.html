@@ -10,6 +10,222 @@
 <link rel="stylesheet" href="universe.css">
 <link rel="stylesheet" href="page-universe.css">
 	<link rel="stylesheet" href="ironfox-3d-pages.css">
+
+<style id="ironfox-mobile-fix">
+/* Mobile-only layout corrections for the Nexus home page.
+   Desktop styles remain unchanged. */
+@media (max-width: 700px) {
+  html, body { width: 100%; max-width: 100%; overflow-x: clip; }
+  body { margin: 0; }
+  .hero.floating-worlds {
+    box-sizing: border-box !important;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    min-height: 100svh !important;
+    height: auto !important;
+    max-height: none !important;
+    padding: 28px 18px 76px !important;
+    gap: 0 !important;
+    overflow: hidden !important;
+  }
+  .hero.floating-worlds .fw-brand {
+    position: relative !important;
+    inset: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: 560px !important;
+    margin: 0 auto 28px !important;
+    z-index: 5 !important;
+    text-align: center !important;
+  }
+  .fw-brand-overline {
+    display: block !important;
+    font-size: clamp(10px, 2.7vw, 13px) !important;
+    letter-spacing: .22em !important;
+    line-height: 1.5 !important;
+    margin: 0 0 12px !important;
+  }
+  .fw-brand-button {
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+    min-height: 76px !important;
+    padding: 10px 14px !important;
+    border-radius: 22px !important;
+    text-align: left !important;
+  }
+  .fw-brand-button img {
+    width: 48px !important;
+    height: 48px !important;
+    flex: 0 0 48px !important;
+    object-fit: contain !important;
+  }
+  .fw-brand-button span { min-width: 0 !important; }
+  .fw-brand-button b {
+    font-size: clamp(18px, 5.2vw, 25px) !important;
+    line-height: 1.1 !important;
+    letter-spacing: .08em !important;
+  }
+  .fw-brand-button small { font-size: 10px !important; letter-spacing: .28em !important; }
+  .fw-brand-button > i { margin-left: auto !important; flex: 0 0 auto !important; }
+  .fw-brand > p {
+    margin: 12px 0 0 !important;
+    font-size: clamp(10px, 3vw, 13px) !important;
+    line-height: 1.5 !important;
+    letter-spacing: .13em !important;
+  }
+  .hero.floating-worlds .fw-world-nav {
+    position: relative !important;
+    inset: auto !important;
+    transform: none !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 12px !important;
+    width: 100% !important;
+    max-width: 560px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    z-index: 4 !important;
+  }
+  .fw-world-nav .fw-world {
+    box-sizing: border-box !important;
+    position: relative !important;
+    inset: auto !important;
+    transform: none !important;
+    display: grid !important;
+    grid-template-columns: 54px minmax(0, 1fr) auto !important;
+    grid-template-rows: auto auto auto !important;
+    align-items: center !important;
+    column-gap: 12px !important;
+    row-gap: 3px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 112px !important;
+    height: auto !important;
+    max-height: none !important;
+    padding: 15px 14px !important;
+    margin: 0 !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    text-align: left !important;
+  }
+  .fw-world-nav .fw-world-symbol {
+    position: relative !important;
+    grid-column: 1 !important;
+    grid-row: 1 / 4 !important;
+    width: 48px !important;
+    height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    font-size: 24px !important;
+    border-radius: 50% !important;
+  }
+  .fw-world-nav .fw-world-label {
+    position: static !important;
+    grid-column: 2 / 4 !important;
+    grid-row: 1 !important;
+    margin: 0 !important;
+    font-size: 10px !important;
+    line-height: 1.3 !important;
+    letter-spacing: .18em !important;
+  }
+  .fw-world-nav .fw-world strong {
+    position: static !important;
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    display: block !important;
+    margin: 0 !important;
+    font-size: clamp(20px, 5.6vw, 26px) !important;
+    line-height: 1.15 !important;
+    letter-spacing: .04em !important;
+    white-space: normal !important;
+  }
+  .fw-world-nav .fw-world small {
+    position: static !important;
+    grid-column: 2 !important;
+    grid-row: 3 !important;
+    display: block !important;
+    margin: 0 !important;
+    font-size: 13px !important;
+    line-height: 1.35 !important;
+  }
+  .fw-world-nav .fw-world > i {
+    position: static !important;
+    grid-column: 3 !important;
+    grid-row: 2 / 4 !important;
+    align-self: end !important;
+    justify-self: end !important;
+    margin: 0 !important;
+    font-size: 9px !important;
+    line-height: 1.4 !important;
+    letter-spacing: .12em !important;
+    white-space: nowrap !important;
+  }
+  .hero.floating-worlds .fw-status {
+    position: relative !important;
+    inset: auto !important;
+    transform: none !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 8px 12px !important;
+    width: 100% !important;
+    max-width: 560px !important;
+    margin: 18px auto 0 !important;
+    padding: 0 !important;
+    font-size: 10px !important;
+    line-height: 1.4 !important;
+    letter-spacing: .08em !important;
+    z-index: 4 !important;
+  }
+  .fw-planet, .fw-halo, .fw-island, .fw-bridge {
+    pointer-events: none !important;
+    max-width: 100vw !important;
+  }
+  .hero.floating-worlds .fw-island,
+  .hero.floating-worlds .fw-bridge { opacity: .3 !important; }
+  .projects.section-wrap, .capabilities.section-wrap {
+    box-sizing: border-box !important;
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+  .project-grid, .capability-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 14px !important;
+  }
+  .project-card { min-width: 0 !important; }
+  footer {
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+    padding: 24px 18px calc(24px + env(safe-area-inset-bottom)) !important;
+  }
+}
+@media (max-width: 380px) {
+  .hero.floating-worlds { padding-left: 12px !important; padding-right: 12px !important; }
+  .fw-world-nav .fw-world { grid-template-columns: 44px minmax(0, 1fr) !important; padding: 13px 11px !important; column-gap: 10px !important; }
+  .fw-world-nav .fw-world-symbol { width: 40px !important; height: 40px !important; }
+  .fw-world-nav .fw-world-label { grid-column: 2 !important; }
+  .fw-world-nav .fw-world strong { grid-column: 2 !important; }
+  .fw-world-nav .fw-world small { grid-column: 2 !important; }
+  .fw-world-nav .fw-world > i { grid-column: 2 !important; grid-row: 4 !important; justify-self: start !important; margin-top: 4px !important; }
+  .fw-world-nav .fw-world { grid-template-rows: auto auto auto auto !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fw-world-nav .fw-world, .fw-world-nav .fw-world * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+</style>
+
 </head>
 <body>
 
