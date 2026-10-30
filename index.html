@@ -226,6 +226,156 @@
 }
 </style>
 
+
+<style id="ironfox-mobile-final-fix">
+/* Final iPhone layout fixes for the floating-worlds home hub only */
+@media (max-width: 760px) {
+  html:has(.floating-worlds), body:has(.floating-worlds) {
+    min-height: 100%;
+    height: auto !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+  main:has(> .floating-worlds) > section.floating-worlds {
+    height: auto !important;
+    min-height: 100svh !important;
+    max-height: none !important;
+    overflow: hidden !important;
+    padding: 0 0 calc(76px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+  .fw-brand {
+    top: max(28px, env(safe-area-inset-top, 0px) + 22px) !important;
+    left: 16px !important;
+    right: 16px !important;
+    width: auto !important;
+    gap: 8px !important;
+  }
+  .fw-brand-overline {
+    font-size: 8px !important;
+    letter-spacing: .2em !important;
+  }
+  .fw-brand-button {
+    width: min(100%, 440px) !important;
+    min-height: 72px !important;
+    padding: 8px 14px !important;
+    gap: 12px !important;
+    justify-content: flex-start !important;
+  }
+  .fw-brand-button img {
+    width: 42px !important;
+    height: 42px !important;
+    flex: 0 0 42px !important;
+  }
+  .fw-brand-button b { font-size: clamp(17px, 5vw, 22px) !important; }
+  .fw-brand-button small { font-size: 8px !important; }
+  .fw-brand-button i { margin-left: auto !important; }
+  .fw-brand > p {
+    font-size: 9px !important;
+    letter-spacing: .16em !important;
+    text-align: center !important;
+  }
+
+  /* Keep the three destination cards close to the brand and let the scene breathe. */
+  .fw-world-nav {
+    position: relative !important;
+    inset: auto !important;
+    transform: none !important;
+    width: auto !important;
+    margin: 0 17px !important;
+    padding: clamp(250px, 37svh, 320px) 0 0 !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 12px !important;
+  }
+  .fw-world {
+    min-height: 112px !important;
+    height: auto !important;
+    padding: 14px 94px 14px 18px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    text-align: left !important;
+    transform: none !important;
+  }
+  .fw-world-label,
+  .fw-world strong,
+  .fw-world small {
+    position: relative !important;
+    z-index: 2 !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    text-align: left !important;
+  }
+  .fw-world-label { font-size: 8px !important; }
+  .fw-world strong {
+    font-size: 20px !important;
+    line-height: 1.15 !important;
+    letter-spacing: .07em !important;
+  }
+  .fw-world small {
+    font-size: 11px !important;
+    line-height: 1.35 !important;
+    white-space: normal !important;
+  }
+  .fw-world i {
+    position: absolute !important;
+    right: 14px !important;
+    bottom: 13px !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    font-size: 7px !important;
+    white-space: nowrap !important;
+  }
+  /* Move the glowing portal medallion away from all copy. */
+  .fw-world-symbol {
+    position: absolute !important;
+    left: auto !important;
+    right: 19px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 54px !important;
+    height: 54px !important;
+    display: grid !important;
+    place-items: center !important;
+    margin: 0 !important;
+    font-size: 23px !important;
+    z-index: 1 !important;
+  }
+  .fw-status {
+    left: 17px !important;
+    right: 17px !important;
+    bottom: max(13px, env(safe-area-inset-bottom, 0px) + 8px) !important;
+    font-size: 7px !important;
+    letter-spacing: .08em !important;
+    z-index: 8 !important;
+  }
+  .fw-status span:last-child {
+    max-width: 48% !important;
+    text-align: right !important;
+  }
+  .fw-island-center { top: 20% !important; left: 25% !important; width: 50% !important; height: 20% !important; }
+  .fw-island-left, .fw-island-right { opacity: .65 !important; }
+}
+@media (max-width: 390px) {
+  .fw-world-nav { padding-top: 238px !important; }
+  .fw-brand-button { min-height: 66px !important; }
+  .fw-world { min-height: 108px !important; }
+  .fw-status span:last-child { display: none !important; }
+}
+@media (min-width: 761px) {
+  .fw-world-nav { padding-top: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fw-world-symbol, .fw-world { transition: none !important; }
+}
+</style>
+
 </head>
 <body>
 
