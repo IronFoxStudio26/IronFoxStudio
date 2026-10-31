@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,6 +7,8 @@
 <title>Iron Fox Studio — We Build Worlds</title>
 <link rel="icon" href="Images/Logo.jpg">
 <link rel="stylesheet" href="redesign.css">
+<link rel="stylesheet" href="universe.css">
+<link rel="stylesheet" href="page-universe.css">
 	<link rel="stylesheet" href="ironfox-3d-pages.css">
 
 <style id="ironfox-mobile-fix">
@@ -720,10 +722,74 @@
 /* Exact space image supplied by the site owner. UI and animation layers remain separate. */
 .hero.floating-worlds {
   background-color: #020714 !important;
-  background-image: url("./space-background.jpg") !important;
+  background-image: url("./space-background.jpeg") !important;
   background-size: cover !important;
   background-position: center center !important;
   background-repeat: no-repeat !important;
+}
+</style>
+
+
+<style id="ironfox-enhanced-ship-and-meteors">
+.hero.floating-worlds .fw-spacecraft {
+  width: clamp(150px, 18vw, 238px);
+  height: auto;
+  aspect-ratio: 530 / 182;
+  z-index: 3;
+  filter: drop-shadow(0 0 10px rgba(65,174,255,.42))
+          drop-shadow(0 0 18px rgba(255,132,54,.18));
+}
+.hero.floating-worlds .fw-spacecraft img {
+  display: block;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.hero.floating-worlds .fw-engine-glow {
+  left: 5%;
+  top: 52%;
+  width: 12px;
+  height: 7px;
+  background: #ff9a45;
+  box-shadow: 0 0 9px 4px rgba(255,129,48,.75),
+              0 0 22px 9px rgba(45,163,255,.42);
+}
+.hero.floating-worlds .fw-meteor {
+  height: 2.5px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255,85,24,.08) 30%,
+    rgba(255,117,36,.72) 68%,
+    #fff1c5 100%);
+  box-shadow: 0 0 7px rgba(255,112,35,.95),
+              0 0 17px rgba(255,75,24,.7),
+              0 0 28px rgba(255,165,74,.35);
+}
+.hero.floating-worlds .fw-meteor::before {
+  width: 7px;
+  height: 7px;
+  background: #fff9e8;
+  box-shadow: 0 0 8px 4px #ffd28b,
+              0 0 18px 7px rgba(255,105,34,.8),
+              0 0 28px 9px rgba(255,72,22,.4);
+}
+.hero.floating-worlds .fw-meteor-a,
+.hero.floating-worlds .fw-meteor-c {
+  height: 3px;
+}
+@media (max-width: 760px) {
+  .hero.floating-worlds .fw-spacecraft {
+    width: 112px;
+    height: auto;
+    aspect-ratio: 530 / 182;
+  }
+  .hero.floating-worlds .fw-meteor {
+    height: 2px;
+  }
 }
 </style>
 
@@ -742,64 +808,7 @@
     </div>
     <div class="fw-spacecraft" aria-hidden="true">
     <span class="fw-spacecraft-trail"></span>
-    <svg viewBox="0 0 320 150" role="presentation" focusable="false">
-      <defs>
-        <linearGradient id="shipBody" x1="0" y1="0" x2="0.9" y2="1">
-          <stop offset="0" stop-color="#f7fbff"/>
-          <stop offset=".22" stop-color="#a9c6e7"/>
-          <stop offset=".55" stop-color="#526f95"/>
-          <stop offset="1" stop-color="#172943"/>
-        </linearGradient>
-        <linearGradient id="shipWing" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#d9edff"/>
-          <stop offset=".45" stop-color="#527ba8"/>
-          <stop offset="1" stop-color="#182d4b"/>
-        </linearGradient>
-        <linearGradient id="shipCanopy" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#c5fbff"/>
-          <stop offset=".4" stop-color="#2689c8"/>
-          <stop offset="1" stop-color="#071a38"/>
-        </linearGradient>
-        <linearGradient id="shipFlame" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stop-color="#ff6b24" stop-opacity="0"/>
-          <stop offset=".45" stop-color="#ff9a45" stop-opacity=".9"/>
-          <stop offset="1" stop-color="#b8f5ff"/>
-        </linearGradient>
-        <filter id="shipBloom" x="-70%" y="-100%" width="250%" height="300%">
-          <feGaussianBlur stdDeviation="5" result="b"/>
-          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-      </defs>
-      <g filter="url(#shipBloom)">
-        <!-- Twin engine plumes -->
-        <path d="M8 57 L103 64 L105 75 L5 71 Z" fill="url(#shipFlame)" opacity=".85"/>
-        <path d="M15 91 L105 82 L105 91 L8 103 Z" fill="url(#shipFlame)" opacity=".72"/>
-        <path d="M90 63 L126 64 L126 76 L90 76 Z" fill="#ff8a35"/>
-        <path d="M90 84 L126 82 L126 94 L90 94 Z" fill="#ff8a35"/>
-        <!-- Lower stabilizer and broad swept wings -->
-        <path d="M120 75 L57 116 L142 103 L188 91 L188 68 Z" fill="url(#shipWing)" stroke="#a9d9ff" stroke-width="2"/>
-        <path d="M128 75 L71 36 L153 51 L208 70 L188 83 Z" fill="url(#shipWing)" stroke="#d2eaff" stroke-width="2"/>
-        <path d="M65 111 L131 84 L188 86 L157 105 Z" fill="#263e60" stroke="#789fc5" stroke-width="1.5"/>
-        <!-- Main fuselage -->
-        <path d="M91 77 Q123 46 191 48 L259 65 Q289 72 311 80 Q285 89 253 96 L180 111 Q123 112 91 89 Z"
-              fill="url(#shipBody)" stroke="#d7edff" stroke-width="2.2"/>
-        <path d="M145 66 Q177 43 224 58 L250 70 L191 77 L131 80 Z"
-              fill="url(#shipCanopy)" stroke="#baf3ff" stroke-width="1.8"/>
-        <path d="M150 67 Q180 51 211 61" fill="none" stroke="#e7ffff" stroke-width="2" opacity=".8"/>
-        <!-- Nose plating and panel lines -->
-        <path d="M250 70 L311 80 L253 96 L224 89 Z" fill="#263d5b" stroke="#9dbbda" stroke-width="1.4"/>
-        <path d="M119 88 L188 91 L252 83" fill="none" stroke="#e6f5ff" stroke-width="1.4" opacity=".7"/>
-        <path d="M174 101 L226 91 L260 88" fill="none" stroke="#ff9b43" stroke-width="2" opacity=".9"/>
-        <path d="M125 59 L145 51 L164 55" fill="none" stroke="#f4fbff" stroke-width="2"/>
-        <path d="M128 101 L145 108 L168 106" fill="none" stroke="#8eb5dc" stroke-width="2"/>
-        <!-- Blue running lights -->
-        <path d="M190 54 L213 58" stroke="#53dfff" stroke-width="4" stroke-linecap="round"/>
-        <path d="M211 98 L233 93" stroke="#4bdcff" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="118" cy="70" r="3" fill="#fff"/>
-        <circle cx="118" cy="94" r="3" fill="#fff"/>
-        <circle cx="275" cy="78" r="2.5" fill="#ffb35c"/>
-      </g>
-    </svg>
+    <img src="./ironfox-spaceship.png" alt="" draggable="false">
     <span class="fw-engine-glow"></span>
   </div>
 
