@@ -791,6 +791,97 @@
 }
 </style>
 
+
+<style id="ironfox-balloon-animation">
+/* Decorative branded balloon: independent layer behind all clickable homepage cards. */
+.hero.floating-worlds .fw-balloon-flight {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  width: clamp(112px, 13vw, 178px);
+  height: auto;
+  left: 72%;
+  top: -330px;
+  opacity: 0;
+  filter: drop-shadow(0 0 13px rgba(255,145,65,.25))
+          drop-shadow(0 0 24px rgba(48,139,255,.16));
+  animation: fw-balloon-descent 46s ease-in-out 35s infinite;
+}
+.hero.floating-worlds .fw-balloon-flight svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@keyframes fw-balloon-descent {
+  0%, 5% {
+    opacity: 0;
+    transform: translate3d(0,-25px,0) rotate(-2deg) scale(.88);
+  }
+  12% { opacity: .96; }
+  22% { transform: translate3d(-8px,12vh,0) rotate(1.5deg) scale(.94); }
+  38% { transform: translate3d(5px,30vh,0) rotate(-1deg) scale(1); }
+  52% { opacity: .96; transform: translate3d(-4px,47vh,0) rotate(1deg) scale(.98); }
+  62%, 100% {
+    opacity: 0;
+    transform: translate3d(0,63vh,0) rotate(2deg) scale(.9);
+  }
+}
+@media (max-width: 760px) {
+  .hero.floating-worlds .fw-balloon-flight {
+    width: 88px;
+    left: 73%;
+    top: -190px;
+    animation-duration: 48s;
+    animation-delay: 35s;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero.floating-worlds .fw-balloon-flight { display: none; }
+}
+</style>
+
+
+<style id="ironfox-sequenced-ship-balloon">
+/* One shared 80-second cycle: ship passes first, then the balloon descends.
+   Both remain decorative and behind the clickable homepage interface. */
+.hero.floating-worlds .fw-spacecraft {
+  animation: fw-ship-sequence 80s linear infinite !important;
+}
+@keyframes fw-ship-sequence {
+  0% { opacity: 0; transform: translate3d(-3vw, 5px, 0) rotate(-2deg) scale(.78); }
+  5% { opacity: .94; }
+  20% { transform: translate3d(25vw, -10px, 0) rotate(1deg) scale(.88); }
+  32% { opacity: .92; transform: translate3d(65vw, 4px, 0) rotate(-1deg) scale(.96); }
+  39% { opacity: 0; transform: translate3d(calc(100vw + 270px), 8px, 0) rotate(1deg) scale(.9); }
+  100% { opacity: 0; transform: translate3d(calc(100vw + 270px), 8px, 0) rotate(1deg) scale(.9); }
+}
+.hero.floating-worlds .fw-balloon-flight {
+  animation: fw-balloon-sequence 80s ease-in-out infinite !important;
+}
+@keyframes fw-balloon-sequence {
+  0%, 42% {
+    opacity: 0;
+    transform: translate3d(0,-35px,0) rotate(-2deg) scale(.88);
+  }
+  47% { opacity: .96; }
+  56% { transform: translate3d(-8px,16vh,0) rotate(1.5deg) scale(.94); }
+  68% { transform: translate3d(5px,34vh,0) rotate(-1deg) scale(1); }
+  76% { opacity: .94; transform: translate3d(-4px,50vh,0) rotate(1deg) scale(.98); }
+  82%, 100% {
+    opacity: 0;
+    transform: translate3d(0,65vh,0) rotate(2deg) scale(.9);
+  }
+}
+@media (max-width: 760px) {
+  .hero.floating-worlds .fw-spacecraft {
+    animation: fw-ship-sequence 80s linear infinite !important;
+  }
+  .hero.floating-worlds .fw-balloon-flight {
+    animation: fw-balloon-sequence 80s ease-in-out infinite !important;
+  }
+}
+</style>
+
 </head>
 <body>
 
@@ -798,7 +889,58 @@
 <section class="hero floating-worlds" aria-label="Iron Fox Studio world hub">
   <div class="fw-sky" aria-hidden="true"></div><div class="fw-stars" aria-hidden="true"></div>
   <canvas id="fw-asteroid-canvas" aria-hidden="true"></canvas>
-  <div class="fw-meteor-layer" aria-hidden="true">
+  
+<div class="fw-balloon-flight" id="fw-ironfox-balloon" aria-hidden="true">
+  <svg viewBox="0 0 220 310" role="presentation" focusable="false">
+    <defs>
+      <linearGradient id="ifBalloonFabric" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#526071"/>
+        <stop offset=".35" stop-color="#172333"/>
+        <stop offset=".72" stop-color="#080f1c"/>
+        <stop offset="1" stop-color="#293545"/>
+      </linearGradient>
+      <linearGradient id="ifBalloonGlow" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#ffb45f" stop-opacity="0"/>
+        <stop offset=".75" stop-color="#ff8a35" stop-opacity=".25"/>
+        <stop offset="1" stop-color="#ff9a42" stop-opacity=".8"/>
+      </linearGradient>
+      <radialGradient id="ifBalloonLight" cx=".5" cy=".9" r=".65">
+        <stop offset="0" stop-color="#ff9b43" stop-opacity=".55"/>
+        <stop offset="1" stop-color="#ff9b43" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="ifBalloonShadow" x="-50%" y="-40%" width="200%" height="190%">
+        <feGaussianBlur stdDeviation="5" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+    <ellipse cx="110" cy="133" rx="78" ry="115" fill="url(#ifBalloonLight)"/>
+    <path d="M110 9 C55 9 24 54 25 111 C26 157 52 194 82 215 L138 215 C168 194 194 157 195 111 C196 54 165 9 110 9Z"
+          fill="url(#ifBalloonFabric)" stroke="#8190a3" stroke-width="2.5"/>
+    <path d="M110 10 C78 30 68 82 70 143 C72 177 84 200 96 213" fill="none" stroke="#8d9bab" stroke-opacity=".45" stroke-width="2"/>
+    <path d="M110 10 C142 30 152 82 150 143 C148 177 136 200 124 213" fill="none" stroke="#8d9bab" stroke-opacity=".45" stroke-width="2"/>
+    <path d="M45 48 Q110 13 175 48 M28 112 Q110 145 192 112 M42 170 Q110 195 178 170"
+          fill="none" stroke="#ff963f" stroke-opacity=".8" stroke-width="2.5" filter="url(#ifBalloonShadow)"/>
+    <path d="M52 39 Q110 2 168 39" fill="none" stroke="#d4e2f0" stroke-opacity=".3" stroke-width="2"/>
+    <path d="M55 185 Q110 219 165 185 L139 218 L81 218Z" fill="#111c2a" stroke="#ff9b49" stroke-width="2"/>
+    <!-- Fox mark -->
+    <path d="M83 83 L88 58 L106 71 L114 71 L132 58 L137 83 L130 108 L110 120 L90 108Z"
+          fill="#e7edf4" stroke="#ff9b43" stroke-width="2.5"/>
+    <path d="M88 67 L104 79 L97 94 L84 84Z M132 67 L116 79 L123 94 L136 84Z" fill="#f58a35"/>
+    <path d="M92 91 L108 103 L110 116 L98 108Z M128 91 L112 103 L110 116 L122 108Z" fill="#182435"/>
+    <path d="M103 100 L110 106 L117 100 L110 112Z" fill="#ff9b43"/>
+    <path d="M96 122 Q110 128 124 122" fill="none" stroke="#ffb36a" stroke-width="1.5"/>
+    <text x="110" y="145" fill="#f3f6fb" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="800" letter-spacing=".5">IRON FOX</text>
+    <text x="110" y="163" fill="#ff9b43" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="4">STUDIO</text>
+    <path d="M84 215 L92 247 M136 215 L128 247 M100 216 L104 247 M120 216 L116 247"
+          stroke="#a8b5c4" stroke-width="2" fill="none"/>
+    <path d="M84 245 L136 245 L143 271 Q110 282 77 271Z" fill="#1b2635" stroke="#aab6c5" stroke-width="2"/>
+    <path d="M90 251 L130 251" stroke="#ff9b43" stroke-width="2" opacity=".9"/>
+    <path d="M103 219 Q110 208 117 219 L114 237 L106 237Z" fill="#ff9b43" filter="url(#ifBalloonShadow)"/>
+    <path d="M110 222 L110 240" stroke="#fff0ce" stroke-width="2"/>
+  </svg>
+</div>
+
+<div class="fw-meteor-layer" aria-hidden="true">
       <span class="fw-meteor fw-meteor-a"></span>
       <span class="fw-meteor fw-meteor-b"></span>
       <span class="fw-meteor fw-meteor-c"></span>
@@ -825,6 +967,7 @@
       <a href="#" id="logoutBtn">↪ Выйти</a>
     </div>
   </div>
+ 
   <nav class="fw-world-nav" aria-label="Choose a world">
     <a class="fw-world fw-world-games" href="HTMLPage2.html">
       <span class="fw-world-symbol" aria-hidden="true">✧</span><span class="fw-world-label">WORLD 01</span>
@@ -839,7 +982,7 @@
       <strong>CONTACTS</strong><small>Open communications</small><i>CONNECT ↗</i>
     </a>
   </nav>
-
+  
 </main>
 <footer><a class="brand footer-brand" href="index.html"><img src="Images/Logo.jpg" alt=""><span>IRON FOX<small>STUDIO</small></span></a><span>Independent games. Unforgettable experiences.</span><span>© <span id="year"></span> Iron Fox Studio</span></footer>
 <script type="module" src="redesign.js"></script>
