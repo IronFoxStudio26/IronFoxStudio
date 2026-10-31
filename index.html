@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,6 +7,8 @@
 <title>Iron Fox Studio — We Build Worlds</title>
 <link rel="icon" href="Images/Logo.jpg">
 <link rel="stylesheet" href="redesign.css">
+<link rel="stylesheet" href="universe.css">
+<link rel="stylesheet" href="page-universe.css">
 	<link rel="stylesheet" href="ironfox-3d-pages.css">
 
 <style id="ironfox-mobile-fix">
@@ -374,6 +376,24 @@
 }
 </style>
 
+
+<style id="ironfox-home-auth-styles">
+/* Minimal account access: isolated from the existing Nexus layout. */
+.fw-auth{position:absolute;top:clamp(22px,4vh,42px);right:clamp(22px,4vw,56px);z-index:30;display:flex;align-items:center;gap:10px;font-family:inherit}
+.fw-auth button{min-height:42px;padding:0 19px;border-radius:9px;font:600 11px/1 inherit;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s,border-color .2s,box-shadow .2s,transform .2s}
+.fw-auth-login{color:#9beaff;background:rgba(3,17,39,.68);border:1px solid rgba(0,190,255,.78);box-shadow:inset 0 0 16px rgba(0,155,255,.08)}
+.fw-auth-login:hover{background:rgba(0,133,210,.2);box-shadow:0 0 18px rgba(0,174,255,.2)}
+.fw-auth-register{color:#fff;background:linear-gradient(135deg,#ff7a16,#f04412);border:1px solid #ff9a45;box-shadow:0 0 18px rgba(255,92,25,.25)}
+.fw-auth-register:hover{transform:translateY(-1px);box-shadow:0 0 24px rgba(255,92,25,.42)}
+.fw-auth button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.fw-auth-profile{position:absolute;top:calc(100% + 10px);right:0;min-width:190px;padding:8px;border:1px solid rgba(0,190,255,.55);border-radius:12px;background:rgba(5,13,30,.96);box-shadow:0 12px 36px rgba(0,0,0,.4);display:none}
+.fw-auth-profile.show{display:block}
+.fw-auth-profile a{display:block;padding:11px 12px;color:#eaf6ff;text-decoration:none;font-size:13px;border-radius:7px}
+.fw-auth-profile a:hover{background:rgba(0,160,230,.16)}
+@media(max-width:760px){.fw-auth{top:max(14px,env(safe-area-inset-top));right:16px;gap:7px}.fw-auth button{min-height:36px;padding:0 12px;font-size:9px;letter-spacing:.08em;border-radius:8px}.fw-auth-profile{min-width:170px}}
+@media(max-width:390px){.fw-auth{right:12px;gap:5px}.fw-auth button{padding:0 9px;font-size:8px}}
+</style>
+
 </head>
 <body>
 
@@ -385,6 +405,15 @@
   <div class="fw-island fw-island-left" aria-hidden="true"><span class="fw-tree"></span></div>
   <div class="fw-island fw-island-right" aria-hidden="true"><span class="fw-tree"></span></div>
   <div class="fw-bridge fw-bridge-left" aria-hidden="true"></div><div class="fw-bridge fw-bridge-right" aria-hidden="true"></div>
+  <div class="fw-auth" aria-label="Account access">
+    <button class="fw-auth-login" id="signUpBtn" type="button" onclick="window.signUp && window.signUp()">Войти</button>
+    <button class="fw-auth-register" id="registerBtn" type="button" onclick="window.signUp && window.signUp()">Регистрация</button>
+    <div class="fw-auth-profile" id="profileMenu">
+      <a href="profile.html">👤 Мой профиль</a>
+      <a href="Settings.html">⚙ Настройки</a>
+      <a href="#" id="logoutBtn">↪ Выйти</a>
+    </div>
+  </div>
   <div class="fw-brand">
     <span class="fw-brand-overline">WELCOME TO THE NEXUS</span>
     <a href="index.html" class="fw-brand-button" aria-label="Iron Fox Studio home">
@@ -436,6 +465,7 @@
 </main>
 <footer><a class="brand footer-brand" href="index.html"><img src="Images/Logo.jpg" alt=""><span>IRON FOX<small>STUDIO</small></span></a><span>Independent games. Unforgettable experiences.</span><span>© <span id="year"></span> Iron Fox Studio</span></footer>
 <script type="module" src="redesign.js"></script>
+<script type="module" src="Firebase.js"></script>
 <script src="universe.js" defer></script>
 <script src="page-universe.js" defer></script>
 </body></html>
