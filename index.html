@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,6 +7,8 @@
 <title>Iron Fox Studio — We Build Worlds</title>
 <link rel="icon" href="Images/Logo.jpg">
 <link rel="stylesheet" href="redesign.css">
+<link rel="stylesheet" href="universe.css">
+<link rel="stylesheet" href="page-universe.css">
 	<link rel="stylesheet" href="ironfox-3d-pages.css">
 
 <style id="ironfox-mobile-fix">
@@ -392,12 +394,235 @@
 @media(max-width:390px){.fw-auth{right:12px;gap:5px}.fw-auth button{padding:0 9px;font-size:8px}}
 </style>
 
+
+<style id="ironfox-spacecraft-animation">
+/* Decorative spacecraft: flies slowly across the existing Nexus sky.
+   It sits behind the homepage content and never intercepts taps/clicks. */
+.hero.floating-worlds .fw-spacecraft {
+  position: absolute;
+  z-index: 1;
+  top: 25%;
+  left: -230px;
+  width: clamp(145px, 17vw, 225px);
+  height: 100px;
+  pointer-events: none;
+  opacity: 0;
+  filter: drop-shadow(0 0 12px rgba(93, 190, 255, .32));
+  animation: fw-ship-flight 38s linear 2s infinite;
+  will-change: transform, opacity;
+}
+.hero.floating-worlds .fw-spacecraft svg {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.hero.floating-worlds .fw-spacecraft-trail {
+  position: absolute;
+  z-index: 1;
+  left: -105%;
+  top: 49%;
+  width: 115%;
+  height: 2px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, transparent, rgba(76,174,255,.08), rgba(120,215,255,.55));
+  filter: blur(2px);
+}
+.hero.floating-worlds .fw-engine-glow {
+  position: absolute;
+  left: 1%;
+  top: 50%;
+  width: 24px;
+  height: 9px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: #ff8a43;
+  box-shadow: 0 0 9px 4px rgba(255,112,47,.6), 0 0 22px 8px rgba(66,169,255,.22);
+  animation: fw-engine-pulse 1.8s ease-in-out infinite alternate;
+}
+@keyframes fw-ship-flight {
+  0%   { opacity: 0; transform: translate3d(0, 0, 0) rotate(-5deg) scale(.78); }
+  7%   { opacity: .9; }
+  40%  { transform: translate3d(42vw, -22px, 0) rotate(-1deg) scale(.92); }
+  72%  { opacity: .82; transform: translate3d(82vw, 12px, 0) rotate(4deg) scale(1); }
+  94%  { opacity: .9; }
+  100% { opacity: 0; transform: translate3d(calc(100vw + 260px), -8px, 0) rotate(2deg) scale(.88); }
+}
+@keyframes fw-engine-pulse {
+  from { opacity: .55; transform: translateY(-50%) scaleX(.75); }
+  to { opacity: 1; transform: translateY(-50%) scaleX(1.2); }
+}
+@media (max-width: 760px) {
+  .hero.floating-worlds .fw-spacecraft {
+    top: 24%;
+    left: -150px;
+    width: 118px;
+    height: 62px;
+    animation-duration: 43s;
+  }
+  .hero.floating-worlds .fw-spacecraft-trail { height: 1px; }
+  .hero.floating-worlds .fw-engine-glow {
+    width: 13px; height: 5px;
+    box-shadow: 0 0 6px 2px rgba(255,112,47,.55), 0 0 12px 4px rgba(66,169,255,.2);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero.floating-worlds .fw-spacecraft { animation: none; opacity: .72; left: 72%; top: 24%; transform: rotate(-5deg); }
+  .hero.floating-worlds .fw-engine-glow { animation: none; }
+}
+</style>
+
+
+<style id="ironfox-cinematic-space-background">
+/* Background-only upgrade: keep all existing Nexus UI and Firebase behavior intact. */
+.hero.floating-worlds {
+  isolation: isolate;
+  background-color: #030817 !important;
+  background-image:
+    radial-gradient(ellipse at 18% 24%, rgba(24, 73, 180, .28), transparent 34%),
+    radial-gradient(ellipse at 83% 29%, rgba(92, 35, 164, .25), transparent 30%),
+    radial-gradient(ellipse at 48% 78%, rgba(0, 117, 210, .22), transparent 42%),
+    radial-gradient(ellipse at 8% 72%, rgba(235, 91, 52, .13), transparent 24%),
+    linear-gradient(180deg, #020612 0%, #07142e 52%, #020817 100%) !important;
+  overflow: hidden;
+}
+.hero.floating-worlds::before {
+  content: "";
+  position: absolute;
+  inset: -8%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 76% 16%, rgba(75, 177, 255, .22), transparent 18%),
+    radial-gradient(ellipse at 88% 36%, rgba(142, 67, 255, .18), transparent 22%),
+    radial-gradient(ellipse at 15% 47%, rgba(22, 100, 255, .16), transparent 25%),
+    radial-gradient(ellipse at 52% 92%, rgba(28, 127, 255, .24), transparent 34%),
+    radial-gradient(circle at 19% 18%, rgba(130, 192, 255, .9) 0 1px, transparent 2px),
+    radial-gradient(circle at 71% 12%, rgba(255, 255, 255, .85) 0 1px, transparent 2px),
+    radial-gradient(circle at 91% 67%, rgba(143, 204, 255, .8) 0 1px, transparent 2px),
+    radial-gradient(circle at 37% 83%, rgba(255, 255, 255, .75) 0 1px, transparent 2px),
+    radial-gradient(circle at 57% 31%, rgba(107, 180, 255, .8) 0 1px, transparent 2px);
+  background-size: auto, auto, auto, auto, 290px 240px, 370px 310px, 430px 360px, 510px 430px, 610px 520px;
+  animation: nexus-nebula-drift 65s ease-in-out infinite alternate;
+}
+.hero.floating-worlds::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  width: min(58vw, 760px);
+  aspect-ratio: 1;
+  left: -18%;
+  top: -38%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 38% 35%, rgba(40, 91, 168, .08) 0 42%, rgba(10, 31, 75, .3) 57%, rgba(2, 8, 22, .92) 70%),
+    radial-gradient(circle at 35% 30%, rgba(91, 171, 255, .38), transparent 62%);
+  box-shadow: inset -28px -12px 55px rgba(0, 0, 0, .7), 10px 4px 42px rgba(38, 137, 255, .12);
+  opacity: .75;
+  animation: nexus-planet-float 48s ease-in-out infinite alternate;
+}
+.hero.floating-worlds .fw-sky {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .72;
+  background:
+    radial-gradient(ellipse at 76% 90%, rgba(21, 116, 224, .24), transparent 34%),
+    radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0, 0, 0, .35) 100%);
+}
+.hero.floating-worlds .fw-stars {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: .62;
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, #fff 98%, transparent),
+    radial-gradient(1px 1px at 90px 110px, #9bcaff 98%, transparent),
+    radial-gradient(1.5px 1.5px at 160px 70px, #fff 98%, transparent),
+    radial-gradient(1px 1px at 230px 180px, #b7d9ff 98%, transparent);
+  background-size: 270px 220px;
+  animation: nexus-stars-slide 95s linear infinite;
+}
+.hero.floating-worlds .fw-spacecraft {
+  z-index: 2;
+  filter: drop-shadow(0 0 15px rgba(63, 169, 255, .5));
+}
+@keyframes nexus-nebula-drift {
+  from { transform: translate3d(-1%, 0, 0) scale(1); }
+  to { transform: translate3d(1.5%, -1%, 0) scale(1.04); }
+}
+@keyframes nexus-planet-float {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(2.5%, 2%, 0); }
+}
+@keyframes nexus-stars-slide {
+  from { background-position: 0 0; }
+  to { background-position: 270px 220px; }
+}
+@media (max-width: 700px) {
+  .hero.floating-worlds::after {
+    width: 92vw;
+    left: -42%;
+    top: -12%;
+    opacity: .48;
+  }
+  .hero.floating-worlds::before { opacity: .82; }
+  .hero.floating-worlds .fw-stars { opacity: .42; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero.floating-worlds::before,
+  .hero.floating-worlds::after,
+  .hero.floating-worlds .fw-stars { animation: none !important; }
+}
+</style>
+
 </head>
 <body>
 
 <main>
 <section class="hero floating-worlds" aria-label="Iron Fox Studio world hub">
   <div class="fw-sky" aria-hidden="true"></div><div class="fw-stars" aria-hidden="true"></div>
+  <div class="fw-spacecraft" aria-hidden="true">
+    <span class="fw-spacecraft-trail"></span>
+    <svg viewBox="0 0 220 100" role="presentation" focusable="false">
+      <defs>
+        <linearGradient id="shipHull" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#f7fbff"/>
+          <stop offset=".42" stop-color="#8fa8c9"/>
+          <stop offset="1" stop-color="#263954"/>
+        </linearGradient>
+        <linearGradient id="shipGlass" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#9cf3ff"/>
+          <stop offset="1" stop-color="#1678b8"/>
+        </linearGradient>
+        <filter id="shipGlow" x="-80%" y="-100%" width="260%" height="300%">
+          <feGaussianBlur stdDeviation="4" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <g filter="url(#shipGlow)">
+        <path d="M12 55 L72 37 Q112 8 170 31 L207 48 L170 66 Q112 91 72 69 Z"
+              fill="url(#shipHull)" stroke="#b9d8f5" stroke-width="2"/>
+        <path d="M75 39 Q112 17 159 34 L176 48 L111 50 Z"
+              fill="url(#shipGlass)" stroke="#d5faff" stroke-width="1.5"/>
+        <path d="M75 62 Q112 83 159 65 L176 52 L111 50 Z"
+              fill="#435d7d" stroke="#9cb9d8" stroke-width="1.2"/>
+        <path d="M25 54 L72 46 L82 55 L72 64 Z" fill="#ff8b3d" opacity=".95"/>
+        <path d="M12 55 L0 46 L5 55 L0 64 Z" fill="#ff6b2b"/>
+        <path d="M97 36 L108 24 L121 35 M97 65 L108 77 L121 66"
+              fill="none" stroke="#d9e9ff" stroke-width="2"/>
+        <circle cx="154" cy="48" r="3" fill="#d7fbff"/>
+        <path d="M185 47 L207 48 L185 51" fill="none" stroke="#fff" stroke-width="1.5"/>
+      </g>
+    </svg>
+    <span class="fw-engine-glow"></span>
+  </div>
+
   <div class="fw-planet" aria-hidden="true"></div><div class="fw-halo" aria-hidden="true"></div>
   <div class="fw-island fw-island-center" aria-hidden="true"><span class="fw-waterfall"></span></div>
   <div class="fw-island fw-island-left" aria-hidden="true"><span class="fw-tree"></span></div>
