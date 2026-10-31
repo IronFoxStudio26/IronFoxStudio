@@ -797,6 +797,7 @@
 <main>
 <section class="hero floating-worlds" aria-label="Iron Fox Studio world hub">
   <div class="fw-sky" aria-hidden="true"></div><div class="fw-stars" aria-hidden="true"></div>
+  <canvas id="fw-asteroid-canvas" aria-hidden="true"></canvas>
   <div class="fw-meteor-layer" aria-hidden="true">
       <span class="fw-meteor fw-meteor-a"></span>
       <span class="fw-meteor fw-meteor-b"></span>
@@ -878,4 +879,185 @@
 <script type="module" src="Firebase.js"></script>
 <script src="universe.js" defer></script>
 <script src="page-universe.js" defer></script>
+
+<style id="ironfox-asteroid-crash-layer">
+/* Bottom-corner asteroid events. Transparent overlay: does not replace the space background. */
+#fw-asteroid-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.hero.floating-worlds .fw-world-nav,
+.hero.floating-worlds .fw-status { position: relative; z-index: 5; }
+.hero.floating-worlds .fw-brand,
+.hero.floating-worlds .fw-auth { z-index: 30; }
+@media (prefers-reduced-motion: reduce) {
+  #fw-asteroid-canvas { display: none; }
+}
+</style>
+<script id="ironfox-asteroid-crash-script">
+(() => {
+  const canvas = document.getElementById('fw-asteroid-canvas');
+  const hero = canvas && canvas.closest('.hero.floating-worlds');
+  if (!canvas || !hero || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const ctx = canvas.getContext('2d', { alpha: true });
+  if (!ctx) return;
+
+  let w = 0, h = 0, dpr = 1, last = 0, nextLarge = 3.5, nextSmall = 8.5;
+  let rocks = [], shards = [], sparks = [], running = true;
+
+  const rand = (a, b) => a + Math.random() * (b - a);
+
+  function resize() {
+    const r = hero.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 1.7);
+    w = Math.max(1, r.width);
+    h = Math.max(1, r.height);
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function makeRock(side, large) {
+    const radius = large ? rand(25, 39) : rand(8, 16);
+    const x = side === 'left' ? rand(18, w * .19) : rand(w * .82, w - 18);
+    const y = h * rand(.58, .78);
+    const points = [];
+    const count = Math.floor(rand(8, 12));
+    for (let i = 0; i < count; i++) {
+      const a = i / count * Math.PI * 2;
+      points.push({ a, r: radius * rand(.72, 1.18) });
+    }
+    rocks.push({
+      x, y, vx: side === 'left' ? rand(13, 28) : rand(-20, -9),
+      vy: rand(32, 55), rot: rand(-.6, .6), spin: rand(-.8, .8),
+      radius, points, large, side, life: 0, hitY: h - radius * .72
+    });
+  }
+
+  function burst(rock) {
+    const n = rock.large ? 13 : 7;
+    for (let i = 0; i < n; i++) {
+      const a = rand(0, Math.PI * 2), speed = rand(35, rock.large ? 125 : 75);
+      shards.push({
+        x: rock.x, y: rock.y, vx: Math.cos(a) * speed,
+        vy: Math.sin(a) * speed - rand(8, 32),
+        size: rand(2, rock.large ? 7 : 4),
+        rot: rand(0, 6), spin: rand(-5, 5), life: 0, max: rand(.55, 1.15)
+      });
+    }
+    for (let i = 0; i < (rock.large ? 22 : 11); i++) {
+      const a = rand(0, Math.PI * 2), speed = rand(30, rock.large ? 150 : 90);
+      sparks.push({
+        x: rock.x, y: rock.y, vx: Math.cos(a) * speed,
+        vy: Math.sin(a) * speed, size: rand(1, 2.8),
+        life: 0, max: rand(.25, .7)
+      });
+    }
+  }
+
+  function drawRock(rock) {
+    ctx.save();
+    ctx.translate(rock.x, rock.y);
+    ctx.rotate(rock.rot);
+    const p = rock.points;
+    const grad = ctx.createLinearGradient(-rock.radius, -rock.radius, rock.radius, rock.radius);
+    grad.addColorStop(0, '#9aa7b6');
+    grad.addColorStop(.38, '#465365');
+    grad.addColorStop(1, '#111a2b');
+    ctx.beginPath();
+    p.forEach((v, i) => {
+      const x = Math.cos(v.a) * v.r, y = Math.sin(v.a) * v.r;
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    });
+    ctx.closePath();
+    ctx.fillStyle = grad;
+    ctx.shadowColor = rock.large ? 'rgba(255,145,76,.25)' : 'rgba(105,180,255,.2)';
+    ctx.shadowBlur = rock.large ? 13 : 6;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+    ctx.strokeStyle = 'rgba(191,211,232,.42)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    // Faceted highlights make the rock read as a small 3D asteroid.
+    ctx.beginPath();
+    ctx.moveTo(-rock.radius * .55, -rock.radius * .15);
+    ctx.lineTo(-rock.radius * .12, -rock.radius * .62);
+    ctx.lineTo(rock.radius * .38, -rock.radius * .35);
+    ctx.strokeStyle = 'rgba(220,232,245,.22)';
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function frame(time) {
+    if (!running) return;
+    const dt = Math.min((time - (last || time)) / 1000, .04);
+    last = time;
+    const seconds = time / 1000;
+    ctx.clearRect(0, 0, w, h);
+
+    if (seconds > nextLarge) {
+      makeRock('left', true);
+      nextLarge = seconds + rand(17, 25);
+    }
+    if (seconds > nextSmall) {
+      makeRock('right', false);
+      if (Math.random() > .55) makeRock('right', false);
+      nextSmall = seconds + rand(9, 15);
+    }
+
+    rocks = rocks.filter(r => r.life < 12);
+    for (const r of rocks) {
+      r.life += dt;
+      r.x += r.vx * dt; r.y += r.vy * dt;
+      r.vy += 12 * dt; r.rot += r.spin * dt;
+      drawRock(r);
+      if (r.y >= r.hitY) { burst(r); r.life = 99; }
+    }
+    rocks = rocks.filter(r => r.life < 12);
+
+    shards = shards.filter(s => s.life < s.max);
+    for (const s of shards) {
+      s.life += dt; s.vy += 115 * dt;
+      s.x += s.vx * dt; s.y += s.vy * dt; s.rot += s.spin * dt;
+      const alpha = Math.max(0, 1 - s.life / s.max);
+      ctx.save(); ctx.globalAlpha = alpha;
+      ctx.translate(s.x, s.y); ctx.rotate(s.rot);
+      ctx.fillStyle = '#8998aa';
+      ctx.strokeStyle = 'rgba(220,235,255,.5)';
+      ctx.beginPath(); ctx.moveTo(-s.size, -s.size * .5);
+      ctx.lineTo(s.size * .7, -s.size); ctx.lineTo(s.size, s.size * .6);
+      ctx.lineTo(-s.size * .5, s.size); ctx.closePath();
+      ctx.fill(); ctx.stroke(); ctx.restore();
+    }
+
+    sparks = sparks.filter(s => s.life < s.max);
+    for (const s of sparks) {
+      s.life += dt; s.vy += 50 * dt;
+      s.x += s.vx * dt; s.y += s.vy * dt;
+      const alpha = Math.max(0, 1 - s.life / s.max);
+      ctx.save(); ctx.globalAlpha = alpha;
+      ctx.fillStyle = '#ffb36b';
+      ctx.shadowColor = '#ff6a2a'; ctx.shadowBlur = 9;
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+    }
+    requestAnimationFrame(frame);
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    running = entries.some(e => e.isIntersecting);
+    if (running) { last = 0; requestAnimationFrame(frame); }
+  });
+  resize();
+  observer.observe(hero);
+  window.addEventListener('resize', resize, { passive: true });
+  requestAnimationFrame(frame);
+})();
+</script>
+
 </body></html>
