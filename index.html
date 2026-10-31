@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,6 +7,8 @@
 <title>Iron Fox Studio — We Build Worlds</title>
 <link rel="icon" href="Images/Logo.jpg">
 <link rel="stylesheet" href="redesign.css">
+<link rel="stylesheet" href="universe.css">
+<link rel="stylesheet" href="page-universe.css">
 	<link rel="stylesheet" href="ironfox-3d-pages.css">
 
 <style id="ironfox-mobile-fix">
@@ -613,13 +615,122 @@
 }
 </style>
 
+
+<style id="ironfox-cinematic-flight-effects">
+/* Spacecraft + meteor shower: decorative only, all UI and Firebase handlers remain untouched. */
+.hero.floating-worlds { position: relative; isolation: isolate; overflow: hidden; }
+.hero.floating-worlds .fw-meteor-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hero.floating-worlds .fw-meteor {
+  position: absolute;
+  display: block;
+  width: clamp(58px, 8vw, 118px);
+  height: 2px;
+  border-radius: 100%;
+  opacity: 0;
+  transform: rotate(28deg);
+  transform-origin: right center;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,111,45,.12) 35%, rgba(255,173,91,.95) 78%, #fff7dc 100%);
+  box-shadow: 0 0 5px rgba(255,125,50,.85), 0 0 13px rgba(255,91,36,.55);
+  animation: fw-meteor-fall 8.5s linear infinite;
+}
+.hero.floating-worlds .fw-meteor::before {
+  content: "";
+  position: absolute;
+  right: -2px;
+  top: -2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff5d8;
+  box-shadow: 0 0 8px 3px #ffb36a, 0 0 18px 5px rgba(255,94,38,.6);
+}
+.hero.floating-worlds .fw-meteor-a { left: 8%; top: -4%; animation-delay: 1s; animation-duration: 8.2s; }
+.hero.floating-worlds .fw-meteor-b { left: 37%; top: -12%; width: 78px; animation-delay: 4.7s; animation-duration: 10s; transform: rotate(34deg); }
+.hero.floating-worlds .fw-meteor-c { left: 70%; top: -8%; width: 95px; animation-delay: 7.3s; animation-duration: 9.2s; transform: rotate(25deg); }
+.hero.floating-worlds .fw-meteor-d { left: 91%; top: 8%; width: 65px; animation-delay: 2.9s; animation-duration: 11s; transform: rotate(38deg); }
+.hero.floating-worlds .fw-meteor-e { left: 52%; top: -18%; width: 54px; animation-delay: 11s; animation-duration: 12s; transform: rotate(30deg); }
+
+@keyframes fw-meteor-fall {
+  0%   { opacity: 0; transform: translate3d(0,0,0) rotate(28deg) scale(.72); }
+  6%   { opacity: .95; }
+  54%  { opacity: .9; }
+  100% { opacity: 0; transform: translate3d(38vw, 78vh, 0) rotate(28deg) scale(1.05); }
+}
+
+/* More graceful ship flight: smaller scale, gentle vertical drift and a subtle bank. */
+.hero.floating-worlds .fw-spacecraft {
+  z-index: 3;
+  width: clamp(150px, 18vw, 238px);
+  height: 112px;
+  animation: fw-ship-cruise 34s linear 1.5s infinite;
+  filter: drop-shadow(0 0 12px rgba(72,174,255,.34));
+}
+.hero.floating-worlds .fw-spacecraft-trail {
+  left: -75%;
+  width: 90%;
+  height: 2px;
+  opacity: .75;
+  background: linear-gradient(90deg, transparent, rgba(53,153,255,.12), rgba(255,143,70,.3), rgba(108,220,255,.62));
+}
+.hero.floating-worlds .fw-engine-glow {
+  left: 27%;
+  top: 52%;
+  width: 15px;
+  height: 6px;
+  box-shadow: 0 0 9px 4px rgba(255,119,48,.58), 0 0 20px 7px rgba(57,167,255,.26);
+}
+@keyframes fw-ship-cruise {
+  0%   { opacity: 0; transform: translate3d(-3vw, 5px, 0) rotate(-2deg) scale(.78); }
+  7%   { opacity: .94; }
+  28%  { transform: translate3d(25vw, -10px, 0) rotate(1deg) scale(.88); }
+  54%  { transform: translate3d(52vw, 4px, 0) rotate(-1deg) scale(.96); }
+  82%  { opacity: .92; transform: translate3d(82vw, -7px, 0) rotate(2deg) scale(1); }
+  100% { opacity: 0; transform: translate3d(calc(100vw + 270px), 8px, 0) rotate(1deg) scale(.9); }
+}
+@media (max-width: 760px) {
+  .hero.floating-worlds .fw-meteor { width: 48px; height: 1.5px; }
+  .hero.floating-worlds .fw-meteor-a { left: 5%; }
+  .hero.floating-worlds .fw-meteor-b { left: 40%; }
+  .hero.floating-worlds .fw-meteor-c { left: 76%; }
+  .hero.floating-worlds .fw-meteor-d { left: 88%; }
+  .hero.floating-worlds .fw-meteor-e { left: 56%; }
+  .hero.floating-worlds .fw-spacecraft {
+    width: 112px;
+    height: 58px;
+    animation-duration: 39s;
+  }
+  @keyframes fw-meteor-fall {
+    0% { opacity: 0; transform: translate3d(0,0,0) rotate(28deg) scale(.7); }
+    8% { opacity: .85; }
+    100% { opacity: 0; transform: translate3d(28vw, 54vh, 0) rotate(28deg) scale(.9); }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero.floating-worlds .fw-meteor,
+  .hero.floating-worlds .fw-spacecraft { animation: none !important; opacity: 0 !important; }
+}
+</style>
+
 </head>
 <body>
 
 <main>
 <section class="hero floating-worlds" aria-label="Iron Fox Studio world hub">
   <div class="fw-sky" aria-hidden="true"></div><div class="fw-stars" aria-hidden="true"></div>
-  <div class="fw-spacecraft" aria-hidden="true">
+  <div class="fw-meteor-layer" aria-hidden="true">
+      <span class="fw-meteor fw-meteor-a"></span>
+      <span class="fw-meteor fw-meteor-b"></span>
+      <span class="fw-meteor fw-meteor-c"></span>
+      <span class="fw-meteor fw-meteor-d"></span>
+      <span class="fw-meteor fw-meteor-e"></span>
+    </div>
+    <div class="fw-spacecraft" aria-hidden="true">
     <span class="fw-spacecraft-trail"></span>
     <svg viewBox="0 0 320 150" role="presentation" focusable="false">
       <defs>
