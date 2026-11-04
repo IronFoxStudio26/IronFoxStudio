@@ -27,16 +27,16 @@ nav{max-width:1400px;margin:auto;min-height:72px;padding:12px clamp(16px,4vw,52p
 .profile-menu a:hover{background:#1762a9}
 .profile-menu hr{border:0;border-top:1px solid #ffffff20;margin:0}
 .scene{position:relative;isolation:isolate;min-height:100svh;height:100svh;overflow:hidden;background:#06101c}
-.scene-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 53%;z-index:-5;user-select:none;pointer-events:none}
-.scene-shade{position:absolute;inset:0;z-index:-4;background:linear-gradient(180deg,rgba(2,7,18,.38),transparent 25%,transparent 70%,rgba(1,5,14,.42)),linear-gradient(90deg,rgba(1,7,18,.12),transparent 35%,rgba(2,5,14,.12));pointer-events:none}
-.rain{position:absolute;inset:-20% 0;z-index:-3;pointer-events:none;opacity:.34;background-image:repeating-linear-gradient(104deg,transparent 0 18px,rgba(166,224,255,.22) 19px,transparent 20px 46px);background-size:100px 230px;animation:rainfall .7s linear infinite}
+.scene-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 53%;z-index:0;user-select:none;pointer-events:none}
+.scene-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(2,7,18,.38),transparent 25%,transparent 70%,rgba(1,5,14,.42)),linear-gradient(90deg,rgba(1,7,18,.12),transparent 35%,rgba(2,5,14,.12));pointer-events:none}
+.rain{position:absolute;inset:-20% 0;z-index:2;pointer-events:none;opacity:.34;background-image:repeating-linear-gradient(104deg,transparent 0 18px,rgba(166,224,255,.22) 19px,transparent 20px 46px);background-size:100px 230px;animation:rainfall .7s linear infinite}
 .rain:after{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(98deg,transparent 0 35px,rgba(120,197,255,.18) 36px,transparent 37px 82px);background-size:170px 280px;animation:rainfall 1.05s linear infinite}
 @keyframes rainfall{from{transform:translate3d(0,-12%,0)}to{transform:translate3d(-5%,12%,0)}}
-.lightning{position:absolute;inset:0;z-index:-2;pointer-events:none;background:#a8dfff;opacity:0;animation:lightning 13s infinite}
+.lightning{position:absolute;inset:0;z-index:3;pointer-events:none;background:#a8dfff;opacity:0;animation:lightning 13s infinite}
 @keyframes lightning{0%,39%,41%,73%,75%,100%{opacity:0}40%{opacity:.12}40.4%{opacity:.025}74%{opacity:.09}74.4%{opacity:0}}
-.ambience{position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 72% 48%,rgba(255,139,57,.08),transparent 32%),radial-gradient(ellipse at 25% 22%,rgba(0,179,255,.08),transparent 38%);animation:ambience 8s ease-in-out infinite alternate}
+.ambience{position:absolute;inset:0;z-index:4;pointer-events:none;background:radial-gradient(ellipse at 72% 48%,rgba(255,139,57,.08),transparent 32%),radial-gradient(ellipse at 25% 22%,rgba(0,179,255,.08),transparent 38%);animation:ambience 8s ease-in-out infinite alternate}
 @keyframes ambience{to{opacity:.55;transform:scale(1.025)}}
-.laptop-hotspot{position:absolute;left:46.8%;top:33%;width:29%;height:27%;border:0;background:transparent;cursor:pointer;z-index:5;border-radius:18px;outline:none}
+.laptop-hotspot{position:absolute;left:46.8%;top:33%;width:29%;height:27%;border:0;background:transparent;cursor:pointer;z-index:6;border-radius:18px;outline:none}
 .laptop-hotspot:focus-visible{outline:3px solid var(--cyan);box-shadow:0 0 30px var(--cyan)}
 .laptop-hotspot:after{content:"";position:absolute;left:17%;right:17%;top:66%;height:4px;border-radius:50%;background:var(--cyan);filter:blur(8px);opacity:0;transition:opacity .25s}
 .laptop-hotspot:hover:after{opacity:.9}
@@ -120,7 +120,7 @@ nav{max-width:1400px;margin:auto;min-height:72px;padding:12px clamp(16px,4vw,52p
 </header>
 
 <main class="scene" aria-label="Iron Fox Studio game room">
-<img class="scene-image" src="Images/games-room-scene.jpeg" alt="Iron Fox Studio workspace with rainy window and gaming laptop">
+<img class="scene-image" src="Images/games-room-scene.jpeg" alt="Iron Fox Studio workspace with rainy window and gaming laptop" onerror="this.style.display='none';console.error('Games room image not found: Images/games-room-scene.jpeg')">
 <div class="scene-shade"></div><div class="rain"></div><div class="lightning"></div><div class="ambience"></div>
 <button class="laptop-hotspot" id="laptopPlay" aria-label="Play and open the game library" title="PLAY"></button>
 <button class="mobile-play" id="mobilePlay">▶ PLAY</button>
