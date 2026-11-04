@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -36,10 +36,40 @@ nav{max-width:1400px;margin:auto;min-height:72px;padding:12px clamp(16px,4vw,52p
 @keyframes lightning{0%,39%,41%,73%,75%,100%{opacity:0}40%{opacity:.12}40.4%{opacity:.025}74%{opacity:.09}74.4%{opacity:0}}
 .ambience{position:absolute;inset:0;z-index:4;pointer-events:none;background:radial-gradient(ellipse at 72% 48%,rgba(255,139,57,.08),transparent 32%),radial-gradient(ellipse at 25% 22%,rgba(0,179,255,.08),transparent 38%);animation:ambience 8s ease-in-out infinite alternate}
 @keyframes ambience{to{opacity:.55;transform:scale(1.025)}}
-.laptop-hotspot{position:absolute;left:46.8%;top:46%;width:26%;height:26%;border:0;background:transparent;cursor:pointer;z-index:6;border-radius:18px;outline:none}
+.laptop-hotspot{position:absolute;left:46.8%;top:33%;width:29%;height:27%;border:0;background:transparent;cursor:pointer;z-index:6;border-radius:18px;outline:none}
 .laptop-hotspot:focus-visible{outline:3px solid var(--cyan);box-shadow:0 0 30px var(--cyan)}
-.laptop-hotspot:after{content:"";position:absolute;left:17%;right:17%;top:66%;height:4px;border-radius:50%;background:var(--cyan);filter:blur(8px);opacity:0;transition:opacity .25s}
-.laptop-hotspot:hover:after{opacity:.55}
+.laptop-hotspot:before,
+.laptop-hotspot:after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  left:24%;
+  top:61%;
+  width:66%;
+  height:22%;
+  clip-path:polygon(9% 0,91% 0,100% 50%,91% 100%,9% 100%,0 50%);
+  opacity:0;
+  transition:opacity .28s ease;
+}
+.laptop-hotspot:before{
+  background:
+    linear-gradient(110deg,rgba(38,224,255,.20),rgba(0,140,255,.10) 48%,rgba(38,224,255,.20));
+  box-shadow:inset 0 0 0 2px rgba(104,239,255,.95);
+}
+.laptop-hotspot:after{
+  left:27%;
+  top:65%;
+  width:60%;
+  height:14%;
+  background:linear-gradient(90deg,rgba(0,220,255,.06),rgba(76,242,255,.30),rgba(0,220,255,.06));
+  clip-path:polygon(9% 0,91% 0,100% 50%,91% 100%,9% 100%,0 50%);
+  filter:blur(5px);
+}
+.laptop-hotspot:hover:before,
+.laptop-hotspot:hover:after,
+.laptop-hotspot:focus-visible:before,
+.laptop-hotspot:focus-visible:after{opacity:1}
+.laptop-hotspot:focus-visible{outline:none}
 .mobile-play{display:none}
 .scene-hint{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);padding:9px 16px;border:1px solid #8adfff55;border-radius:99px;background:#06172bbd;color:#d9f8ff;font-size:12px;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;box-shadow:0 0 24px #008cff22;animation:hintPulse 3s ease-in-out infinite;pointer-events:none}
 @keyframes hintPulse{50%{box-shadow:0 0 28px #00bfff55;border-color:#8adfffaa}}
