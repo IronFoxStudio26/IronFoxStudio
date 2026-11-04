@@ -36,17 +36,17 @@ nav{max-width:1400px;margin:auto;min-height:72px;padding:12px clamp(16px,4vw,52p
 @keyframes lightning{0%,39%,41%,73%,75%,100%{opacity:0}40%{opacity:.12}40.4%{opacity:.025}74%{opacity:.09}74.4%{opacity:0}}
 .ambience{position:absolute;inset:0;z-index:4;pointer-events:none;background:radial-gradient(ellipse at 72% 48%,rgba(255,139,57,.08),transparent 32%),radial-gradient(ellipse at 25% 22%,rgba(0,179,255,.08),transparent 38%);animation:ambience 8s ease-in-out infinite alternate}
 @keyframes ambience{to{opacity:.55;transform:scale(1.025)}}
-.laptop-hotspot{position:absolute;left:46.8%;top:33%;width:29%;height:27%;border:0;background:transparent;cursor:pointer;z-index:6;border-radius:18px;outline:none}
+.laptop-hotspot{position:absolute;left:39%;top:56%;width:23%;height:11%;border:0;background:transparent;cursor:pointer;z-index:6;border-radius:18px;outline:none}
 .laptop-hotspot:focus-visible{outline:3px solid var(--cyan);box-shadow:0 0 30px var(--cyan)}
 .laptop-hotspot:before,
 .laptop-hotspot:after{
   content:"";
   position:absolute;
   pointer-events:none;
-  left:16%;
-  top:100%;
-  width:68%;
-  height:22%;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
   clip-path:polygon(9% 0,91% 0,100% 50%,91% 100%,9% 100%,0 50%);
   opacity:0;
   transition:opacity .28s ease;
@@ -57,10 +57,10 @@ nav{max-width:1400px;margin:auto;min-height:72px;padding:12px clamp(16px,4vw,52p
   box-shadow:inset 0 0 0 2px rgba(104,239,255,.95);
 }
 .laptop-hotspot:after{
-  left:20%;
-  top:104%;
-  width:60%;
-  height:14%;
+  left:4%;
+  top:10%;
+  width:92%;
+  height:80%;
   background:linear-gradient(90deg,rgba(0,220,255,.06),rgba(76,242,255,.30),rgba(0,220,255,.06));
   clip-path:polygon(9% 0,91% 0,100% 50%,91% 100%,9% 100%,0 50%);
   filter:blur(5px);
