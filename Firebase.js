@@ -70,10 +70,7 @@
 
 }
 onAuthStateChanged(auth, (user) => {
-    const registerBtn = document.getElementById("registerBtn");
     if (user) {
-       if (registerBtn) registerBtn.style.display = "none";
-       if (!signUpBtn) return;
        signUpBtn.innerHTML = `
         <img id="topAvatar"
          src="${user.photoURL}"
@@ -87,9 +84,7 @@ onAuthStateChanged(auth, (user) => {
 }
     }
     else {
-        if (registerBtn) registerBtn.style.display = "inline-flex";
-        if (!signUpBtn) return;
-        signUpBtn.innerHTML = "ВОЙТИ";
+        signUpBtn.innerHTML = "Sign Up";
         signUpBtn.onclick = window.signUp;
     }
 });
