@@ -36,10 +36,10 @@ nav{max-width:1400px;margin:auto;min-height:72px;padding:12px clamp(16px,4vw,52p
 @keyframes lightning{0%,39%,41%,73%,75%,100%{opacity:0}40%{opacity:.12}40.4%{opacity:.025}74%{opacity:.09}74.4%{opacity:0}}
 .ambience{position:absolute;inset:0;z-index:4;pointer-events:none;background:radial-gradient(ellipse at 72% 48%,rgba(255,139,57,.08),transparent 32%),radial-gradient(ellipse at 25% 22%,rgba(0,179,255,.08),transparent 38%);animation:ambience 8s ease-in-out infinite alternate}
 @keyframes ambience{to{opacity:.55;transform:scale(1.025)}}
-.laptop-hotspot{position:absolute;left:46.8%;top:46%;width:20%;height:24%;border:0;background:transparent;cursor:pointer;z-index:6;border-radius:18px;outline:none}
+.laptop-hotspot{position:absolute;left:46.8%;top:46%;width:26%;height:26%;border:0;background:transparent;cursor:pointer;z-index:6;border-radius:18px;outline:none}
 .laptop-hotspot:focus-visible{outline:3px solid var(--cyan);box-shadow:0 0 30px var(--cyan)}
 .laptop-hotspot:after{content:"";position:absolute;left:17%;right:17%;top:66%;height:4px;border-radius:50%;background:var(--cyan);filter:blur(8px);opacity:0;transition:opacity .25s}
-.laptop-hotspot:hover:after{opacity:.9}
+.laptop-hotspot:hover:after{opacity:.55}
 .mobile-play{display:none}
 .scene-hint{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);padding:9px 16px;border:1px solid #8adfff55;border-radius:99px;background:#06172bbd;color:#d9f8ff;font-size:12px;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;box-shadow:0 0 24px #008cff22;animation:hintPulse 3s ease-in-out infinite;pointer-events:none}
 @keyframes hintPulse{50%{box-shadow:0 0 28px #00bfff55;border-color:#8adfffaa}}
