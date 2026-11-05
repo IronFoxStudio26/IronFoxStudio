@@ -36,41 +36,7 @@ nav{max-width:1400px;margin:auto;min-height:72px;padding:12px clamp(16px,4vw,52p
 @keyframes lightning{0%,39%,41%,73%,75%,100%{opacity:0}40%{opacity:.12}40.4%{opacity:.025}74%{opacity:.09}74.4%{opacity:0}}
 .ambience{position:absolute;inset:0;z-index:4;pointer-events:none;background:radial-gradient(ellipse at 72% 48%,rgba(255,139,57,.08),transparent 32%),radial-gradient(ellipse at 25% 22%,rgba(0,179,255,.08),transparent 38%);animation:ambience 8s ease-in-out infinite alternate}
 @keyframes ambience{to{opacity:.55;transform:scale(1.025)}}
-.laptop-hotspot{position:absolute;left:47%;top:33%;width:29%;height:27%;border:0;background:transparent;cursor:pointer;z-index:6;border-radius:18px;outline:none}
-.laptop-hotspot:focus-visible{outline:3px solid var(--cyan);box-shadow:0 0 30px var(--cyan)}
-.laptop-hotspot:before,
-.laptop-hotspot:after{
-  content:"";
-  position:absolute;
-  pointer-events:none;
-  left:16%;
-  top:100%;
-  width:52%;
-  height:22%;
-  clip-path:polygon(9% 0,91% 0,100% 50%,91% 100%,9% 100%,0 50%);
-  opacity:0;
-  transition:opacity .28s ease;
-}
-.laptop-hotspot:before{
-  background:
-    linear-gradient(110deg,rgba(38,224,255,.20),rgba(0,140,255,.10) 48%,rgba(38,224,255,.20));
-  box-shadow:inset 0 0 0 2px rgba(104,239,255,.95);
-}
-.laptop-hotspot:after{
-  left:20%;
-  top:104%;
-  width:50%;
-  height:14%;
-  background:linear-gradient(90deg,rgba(0,220,255,.06),rgba(76,242,255,.30),rgba(0,220,255,.06));
-  clip-path:polygon(9% 0,91% 0,100% 50%,91% 100%,9% 100%,0 50%);
-  filter:blur(5px);
-}
-.laptop-hotspot:hover:before,
-.laptop-hotspot:hover:after,
-.laptop-hotspot:focus-visible:before,
-.laptop-hotspot:focus-visible:after{opacity:1}
-.laptop-hotspot:focus-visible{outline:none}
-.mobile-play{display:none}
+
 .scene-hint{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);padding:9px 16px;border:1px solid #8adfff55;border-radius:99px;background:#06172bbd;color:#d9f8ff;font-size:12px;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;box-shadow:0 0 24px #008cff22;animation:hintPulse 3s ease-in-out infinite;pointer-events:none}
 @keyframes hintPulse{50%{box-shadow:0 0 28px #00bfff55;border-color:#8adfffaa}}
 /* GAME HUB */
@@ -132,7 +98,7 @@ header{background:rgba(3,7,17,.94);backdrop-filter:blur(14px)}
 .scene-image{transition:transform 1.15s cubic-bezier(.2,.78,.18,1);transform:scale(1);transform-origin:58% 37%}
 .scene.board-zoom .scene-image{transform:scale(1.46);transform-origin:58% 37%}
 .scene.board-zoom .scene-shade{background:linear-gradient(180deg,rgba(2,7,18,.18),transparent 24%,transparent 78%,rgba(1,5,14,.24))}
-.board-hotspot{position:absolute;left:24.5%;top:7%;width:67%;height:55%;z-index:7;border:1px solid transparent;border-radius:8px;background:transparent;cursor:pointer;transition:background .25s,border-color .25s,box-shadow .25s;outline:none}
+.board-hotspot{position:absolute;left:24.5%;top:14%;width:65%;height:58%;z-index:7;border:1px solid transparent;border-radius:8px;background:transparent;cursor:pointer;transition:background .25s,border-color .25s,box-shadow .25s;outline:none}
 .board-hotspot:hover,.board-hotspot:focus-visible{background:rgba(64,190,255,.035);border-color:rgba(102,224,255,.6);box-shadow:inset 0 0 28px rgba(0,170,255,.12),0 0 24px rgba(0,170,255,.18)}
 .board-hotspot:focus-visible{outline:2px solid #7beaff;outline-offset:3px}
 .scene-hint{z-index:8;bottom:22px}
@@ -167,7 +133,7 @@ body.board-open{overflow:hidden}
 .wall-footer{display:flex;justify-content:space-between;gap:12px;padding-top:11px;border-top:1px solid #f4d4aa55;color:#f4d2ad;font-size:9px;font-weight:800;letter-spacing:.16em}
 @media(max-width:760px){
  .scene-image{object-position:54% center}
- .board-hotspot{left:2%;top:29%;width:96%;height:37%;border-radius:6px}
+ .board-hotspot{left:2%;top:29%;width:96%;height:35%;border-radius:6px}
  .scene-hint{bottom:14px;font-size:9px;letter-spacing:.06em;white-space:normal;text-align:center;width:max-content;max-width:92vw}
  .hub-backdrop{padding:12px 8px}
  .hub-window{width:96vw;max-height:88svh;border-width:6px}
