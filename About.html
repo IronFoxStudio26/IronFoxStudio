@@ -707,7 +707,7 @@ footer{background:rgba(4,10,33,.36);border-top:1px solid rgba(137,194,255,.22)!i
 .about.creator-about{max-width:none;width:100%;padding:clamp(28px,4vw,64px) clamp(14px,3vw,48px) 70px;margin:0;text-align:left;position:relative;perspective:1400px}
 .creator-scene{width:min(1500px,100%);margin:0 auto;position:relative;overflow:hidden;border-radius:26px;border:1px solid rgba(98,190,255,.35);box-shadow:0 30px 90px rgba(0,0,0,.45),0 0 48px rgba(48,111,255,.22);background:#06112b}
 .creator-scene-image{display:block;width:100%;height:auto}
-.creator-screen-copy{position:absolute;left:33%;top:7%;width:49%;height:39%;display:flex;align-items:center;justify-content:center;text-align:center;padding:clamp(8px,1.4vw,22px);color:#eaf6ff;font-size:clamp(12px,1.25vw,20px);line-height:1.38;font-weight:500;text-shadow:0 2px 12px rgba(0,0,0,.65);overflow:hidden}
+.creator-screen-copy{display:none!important;position:absolute;left:33%;top:7%;width:49%;height:39%;display:flex;align-items:center;justify-content:center;text-align:center;padding:clamp(8px,1.4vw,22px);color:#eaf6ff;font-size:clamp(12px,1.25vw,20px);line-height:1.38;font-weight:500;text-shadow:0 2px 12px rgba(0,0,0,.65);overflow:hidden}
 .creator-screen-copy::before{content:"";position:absolute;inset:8%;border-radius:16px;background:radial-gradient(ellipse,rgba(18,42,100,.2),transparent 72%);pointer-events:none}
 .creator-screen-copy span{position:relative;z-index:1}
 .creator-monitor{position:absolute;left:57.5%;top:60.8%;width:28.4%;height:21.8%;overflow:hidden;border:3px solid rgba(95,185,255,.65);border-radius:8px;background:#06101f;transform:perspective(800px) rotateY(-3deg) rotateX(1deg);box-shadow:0 0 25px rgba(42,135,255,.25)}
@@ -718,6 +718,25 @@ footer{background:rgba(4,10,33,.36);border-top:1px solid rgba(137,194,255,.22)!i
 @keyframes creatorScan{from{transform:translateX(-10%)}to{transform:translateX(10%)}}
 @media(max-width:700px){.about.creator-about{padding:20px 12px 45px}.creator-scene{border-radius:14px}.creator-screen-copy{left:33%;top:7%;width:49%;height:39%;font-size:clamp(9px,1.8vw,12px);line-height:1.28;padding:5px;overflow:hidden}.creator-monitor{left:57%;top:61%;width:29%;height:21%;border-width:2px}.creator-built{left:7%;bottom:4%;font-size:8px;letter-spacing:.12em}}
 @media(prefers-reduced-motion:reduce){.creator-scene::after{animation:none}}
+/* Animated energy layers: kept subtle and additive over the supplied scene */
+.creator-scene{isolation:isolate}
+.creator-energy-particles{position:absolute;inset:0;pointer-events:none;z-index:2;overflow:hidden}
+.creator-energy-particles i{position:absolute;width:3px;height:3px;border-radius:50%;background:#9af6ff;box-shadow:0 0 7px 2px #38d9ff;opacity:0;animation:energyFloat 7s linear infinite}
+.creator-energy-particles i:nth-child(1){left:9%;top:75%;animation-delay:0s}.creator-energy-particles i:nth-child(2){left:23%;top:66%;animation-delay:1.3s}.creator-energy-particles i:nth-child(3){left:38%;top:82%;animation-delay:2.2s}.creator-energy-particles i:nth-child(4){left:62%;top:72%;animation-delay:3.4s}.creator-energy-particles i:nth-child(5){left:78%;top:83%;animation-delay:4.6s}.creator-energy-particles i:nth-child(6){left:91%;top:62%;animation-delay:5.1s}
+@keyframes energyFloat{0%{transform:translateY(25px) scale(.5);opacity:0}15%{opacity:.7}75%{opacity:.4}100%{transform:translateY(-85px) scale(1.15);opacity:0}}
+.creator-lightning{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;background:linear-gradient(112deg,transparent 42%,rgba(120,240,255,.85) 49%,rgba(255,255,255,.95) 50%,rgba(40,170,255,.65) 51%,transparent 58%);mix-blend-mode:screen;animation:lightningFlash 9s infinite}
+@keyframes lightningFlash{0%,89%,91%,94%,100%{opacity:0}90%{opacity:.65}90.4%{opacity:.05}90.8%{opacity:.4}91.2%{opacity:0}}
+.creator-scanline{position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(180deg,transparent 0%,rgba(91,222,255,.0) 45%,rgba(91,222,255,.18) 50%,transparent 55%);background-size:100% 220%;animation:panelScan 11s linear infinite;opacity:.4}
+@keyframes panelScan{from{background-position:0 -220%}to{background-position:0 220%}}
+.creator-floating-pad{position:absolute;left:50%;top:79%;width:clamp(92px,13vw,190px);height:auto;z-index:4;transform:translate(-50%,-50%);filter:drop-shadow(0 0 10px rgba(35,190,255,.8));animation:padHover 4.5s ease-in-out infinite}
+.creator-floating-pad svg{display:block;width:100%;height:auto}
+@keyframes padHover{0%,100%{transform:translate(-50%,-50%) rotate(-4deg)}50%{transform:translate(-50%,-64%) rotate(4deg)}}
+.creator-ring-pulse{position:absolute;left:50%;top:84%;width:clamp(100px,16vw,230px);aspect-ratio:2.5/1;border:2px solid rgba(60,220,255,.7);border-radius:50%;z-index:3;pointer-events:none;transform:translate(-50%,-50%);box-shadow:0 0 16px rgba(60,220,255,.7);animation:ringPulse 3.5s ease-in-out infinite}
+@keyframes ringPulse{0%,100%{opacity:.35;transform:translate(-50%,-50%) scale(.88)}50%{opacity:.85;transform:translate(-50%,-50%) scale(1.06)}}
+.creator-built{display:none!important}
+@media(max-width:700px){.creator-floating-pad{top:79%;width:clamp(75px,18vw,120px)}.creator-ring-pulse{top:84%;width:18vw}}
+@media(prefers-reduced-motion:reduce){.creator-scene::after,.creator-energy-particles i,.creator-lightning,.creator-scanline,.creator-floating-pad,.creator-ring-pulse{animation:none!important}}
+
 </style>
 
 </head>
@@ -761,10 +780,13 @@ footer{background:rgba(4,10,33,.36);border-top:1px solid rgba(137,194,255,.22)!i
 
 		<section class="about creator-about">
   <div class="creator-scene" aria-label="Iron Fox Studio creator workspace">
-    <img class="creator-scene-image" src="Images/about-creator-scene.png" alt="Futuristic studio scene with an anthropomorphic fox creator in a suit">
+    <img class="creator-scene-image" src="Images/about-creator-scene.png" alt="Neon futuristic Iron Fox Studio control room">
+    <div class="creator-energy-particles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="creator-lightning" aria-hidden="true"></div><div class="creator-scanline" aria-hidden="true"></div>
+    <div class="creator-ring-pulse" aria-hidden="true"></div>
+    <div class="creator-floating-pad" aria-hidden="true"><svg viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg"><path d="M43 25 C23 25 14 40 8 70 C2 103 22 112 43 93 L65 75 H155 L177 93 C198 112 218 103 212 70 C206 40 197 25 177 25 Z" fill="#071a43" stroke="#3bdcff" stroke-width="5"/><path d="M40 51v30M25 66h30" stroke="#7cecff" stroke-width="8" stroke-linecap="round"/><circle cx="164" cy="51" r="8" fill="#ff7bca"/><circle cx="183" cy="68" r="8" fill="#65f3ff"/><circle cx="145" cy="68" r="8" fill="#9b83ff"/><circle cx="164" cy="85" r="8" fill="#ffb65d"/><path d="M79 43h62" stroke="#3bdcff" stroke-width="3" opacity=".6"/><path d="M88 90h44" stroke="#3bdcff" stroke-width="3" opacity=".6"/></svg></div>
     <div class="creator-screen-copy"><span>At Iron Fox Studio, we don’t just make games — we craft immersive worlds and unforgettable adventures. By combining creativity, innovation, and cutting-edge technology, we create experiences that inspire players and leave a lasting impression.</span></div>
     <div class="creator-monitor"><img src="Images/About.jpg" alt="About Iron Fox Studio fantasy world artwork"></div>
-    <div class="creator-built">Built by <em>Imagination</em></div>
   </div>
 </section>
 
